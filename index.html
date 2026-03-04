@@ -444,6 +444,21 @@
 .pulse-animation {
     animation: pulse-green 2s infinite;
 }
+
+.mobile-nav-buttons {
+        display: none;
+    }
+
+    /* Sadece telefon ekranında (768px ve altı) göster */
+    @media (max-width: 768px) {
+        .mobile-nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -472,12 +487,41 @@
 
     <main id="main-content">
         <section class="hero">
-            <h1>Geleceğe Güvenle <br>Selâm Verin</h1>
-            <p>Çocukluktan ergenliğe, aile içindeki her düğümü sevgi ve uzmanlıkla çözmek için buradayız.</p>
-            <div>
-                <button onclick="toggleContact(true)" style="padding:18px 40px; background:var(--color-teal); color:white; border-radius:50px; border:none; font-weight:700; cursor:pointer; font-size:1.1rem;">Hemen Başlayın</button>
-            </div>
-        </section>
+    <h1>Geleceğe Güvenle <br>Selâm Verin</h1>
+    <p>Çocukluktan ergenliğe, aile içindeki her düğümü sevgi ve uzmanlıkla çözmek için buradayız.</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 10px;">
+        <button onclick="toggleContact(true)" style="padding:18px 40px; background:var(--color-teal); color:white; border-radius:50px; border:none; font-weight:700; cursor:pointer; font-size:1.1rem; width: 260px; box-shadow: 0 10px 20px rgba(84, 110, 122, 0.2);">
+            Hemen Başlayın
+        </button>
+        
+        <div class="mobile-nav-buttons">
+            <button onclick="toggleTeamProfile(true)" style="padding:12px 30px; background:white; color:var(--color-teal); border: 2px solid var(--color-teal); border-radius:50px; font-weight:600; cursor:pointer; width: 260px; margin-bottom: 10px;">
+            Ekibimiz
+            </button>
+            <a href="#sss" style="text-decoration:none; display: block; padding:12px 30px; background:rgba(255,255,255,0.7); color:var(--color-teal); border: 1px solid rgba(84, 110, 122, 0.3); border-radius:50px; font-weight:600; text-align:center; width: 260px; font-size: 0.9rem;">
+            Sıkça Sorulanlar
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Masaüstünde bu butonları gizle */
+    .mobile-nav-buttons {
+        display: none;
+    }
+
+    /* Sadece telefon ekranında (768px ve altı) göster */
+    @media (max-width: 768px) {
+        .mobile-nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+    }
+</style>
 
         <section class="section-padding" id="alanlar">
             <h2 style="text-align:center; font-family:'Playfair Display'; font-size:2.5rem; color:var(--color-teal);">Neden Buradayız?</h2>
@@ -688,4 +732,4 @@ updateBusinessStatus();
 setInterval(updateBusinessStatus, 60000);
 </script>
 </body>
-</html>Ebru
+</html><section class="hero">
