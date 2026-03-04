@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selâm Çocuk Atölyesi & Danışmanlık</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+    <link rel="apple-touch-icon" href="images/logo.jpeg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-pink: #D4A5A5;   /* Gül Kurusu */
+            --color-blue: #78909c;   /* Mavi-Gri */
+            --color-yellow: #FFD54F; /* Hardal Sarı */
+            --color-teal: #546E7A;   /* Koyu Teal */
+            --color-orange: #EF6C00; /* Turuncu */
+            --bg-light: #a8dbe0;
+            --white: #ffffff;
+            --text-dark: #2c3e50;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background-color: var(--bg-light); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* --- NAVİGASYON --- */
+        nav { 
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            padding: 15px 8%; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+        }
+        .logo-box { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img { height: 50px; border-radius: 5px; }
+        .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        
+        /* İletişim Kutucuğu */
+        .nav-contact-btn { 
+            background: var(--color-orange); color: white !important; 
+            padding: 10px 22px; border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(239, 108, 0, 0.2); 
+        }
+
+        /* --- HERO --- */
+        .hero { 
+            padding: 120px 8%; text-align: center;
+            background: radial-gradient(circle at top right, #fff5f5, transparent), 
+                        radial-gradient(circle at bottom left, #f0f7f9, transparent);
+            min-height: 70vh; display: flex; flex-direction: column; justify-content: center;
+        }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8rem; color: var(--color-teal); margin-bottom: 20px; line-height: 1.1; }
+        .hero p { font-size: 1.25rem; color: #5d6d7e; max-width: 750px; margin: 0 auto 40px; }
+
+        /* --- ÇALIŞMA ALANLARI (ETİKETLER) --- */
+        .section-padding { padding: 100px 8%; }
+        .tag-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 40px; }
+        .tag { 
+            padding: 18px 35px; border-radius: 20px; font-weight: 700; font-size: 1rem;
+            background: white; border: 1px solid #eee; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .tag:hover { transform: translateY(-5px); border-color: var(--color-blue); color: var(--color-orange); }
+
+        /* --- SÜREÇ BÖLÜMÜ GÜNCELLEME --- */
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 80px; /* Üstten biraz daha açtık */
+}
+
+.process-card { 
+    background: white; 
+    padding: 60px 40px 40px; /* Üst padding arttı çünkü numara daha yukarıda */
+    border-radius: 35px; 
+    text-align: center;
+    position: relative; 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+/* Kartın üzerine gelince büyüme ve renk değişimi */
+.process-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: var(--color-blue);
+}
+
+.process-num { 
+    position: absolute; 
+    top: -30px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 70px; 
+    height: 70px; 
+    background: var(--color-teal); 
+    color: white;
+    border-radius: 22px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-weight: 800; 
+    font-size: 1.6rem; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.process-card:hover .process-num {
+    transform: translateX(-50%) rotate(10deg) scale(1.1);
+}
+
+        
+/* --- BUNLARI EKLE --- */
+/* --- SSS YENİ MODERN TASARIM --- */
+#sss {
+    background-color: #f0f7f9; /* Açık mavi-gri ferah arka plan */
+    border-radius: 50px;
+    margin: 60px 8%;
+    padding: 80px 50px;
+}
+
+.faq-container {
+    max-width: 850px;
+    margin: 40px auto 0;
+}
+
+.faq-item {
+    background: white;
+    margin-bottom: 18px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.02);
+    overflow: hidden;
+    transition: 0.3s all ease;
+}
+
+.faq-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.faq-btn {
+    width: 100%;
+    padding: 25px 35px;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-teal);
+}
+
+.faq-btn span {
+    width: 35px;
+    height: 35px;
+    background: #f4f7f8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-orange);
+    font-size: 1.4rem;
+    transition: 0.4s;
+}
+
+.faq-item.active {
+    border-color: var(--color-orange);
+}
+
+.faq-item.active .faq-btn {
+    color: var(--color-orange);
+    padding-bottom: 15px;
+}
+
+.faq-item.active .faq-btn span {
+    background: var(--color-orange);
+    color: white;
+    transform: rotate(45deg);
+}
+
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 35px;
+    color: #666;
+    line-height: 1.8;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active .faq-content {
+    max-height: 300px;
+    opacity: 1;
+    padding: 0 35px 30px;
+}
+
+        /* --- İLETİŞİM OVERLAY (TAM EKRAN) --- */
+        #contact-page {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-light); z-index: 2000;
+            display: none; flex-direction: column; align-items: center; justify-content: center;
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
+        
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 90%; max-width: 550px; margin-top: 40px; }
+        .contact-card { 
+            background: white; padding: 35px; border-radius: 25px; text-decoration: none;
+            text-align: center; border: 1px solid #eee; transition: 0.3s;
+        }
+        .contact-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); border-color: var(--color-orange); }
+        .close-contact { position: absolute; top: 40px; left: 8%; font-weight: 800; cursor: pointer; color: var(--color-teal); display: flex; align-items: center; gap: 8px; }
+
+        /* --- MODAL (EKİBİMİZ) --- */
+        .modal { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.6); 
+    z-index: 3000; 
+    align-items: center; /* Dikeyde ortala */
+    justify-content: center; /* Yatayda ortala */
+}
+        .modal-content { background: white; padding: 50px; border-radius: 40px; width: 90%; max-width: 900px; position: relative; }
+
+        footer { padding: 80px 8% 40px; background: var(--color-teal); color: white; text-align: center; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+        
+/* --- NAVİGASYON HOVER DÜZENLEMESİ --- */
+
+/* Menü Linkleri (Süreç, Ekibimiz, SSS) */
+.nav-links a:not(.nav-contact-btn) {
+    color: var(--text-dark);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links a:not(.nav-contact-btn):hover {
+    color: var(--color-orange); /* Sadece üzerine gelince turuncu olur */
+}
+
+/* Linklerin altındaki çizgi efekti */
+.nav-links a:not(.nav-contact-btn)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-orange);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:not(.nav-contact-btn):hover::after {
+    width: 100%;
+}
+
+/* --- YENİLENMİŞ NAVİGASYON STİLLERİ --- */
+
+/* Tüm navigasyon linklerinin ortak başlangıç hali */
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark) !important; /* Tüm yazılar başta koyu renk */
+    font-weight: 600;
+    font-size: 0.9rem;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+    background: none !important; /* Arka plan kutusunu kaldırdık */
+    box-shadow: none !important; /* Varsa gölgeyi kaldırdık */
+}
+
+/* Mouse ile üzerine gelince (Hepsi için geçerli) */
+.nav-links a:hover {
+    color: var(--color-orange) !important; /* Üzerine gelince turuncu olur */
+}
+
+/* Alt çizgi efekti (Hepsi için geçerli) */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-orange);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* --- EKİP DETAY SAYFASI STİLLERİ --- */
+#expert-detail-page {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(253, 251, 250, 0.98); /* Hafif şeffaf arka plan */
+    z-index: 4000; 
+    display: none; /* JavaScript ile flex'e dönecek */
+    
+    /* Ortalamayı sağlayan sihirli satırlar */
+    justify-content: center; 
+    align-items: center; 
+    
+    overflow-y: auto; 
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+#expert-detail-page .profile-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: auto; /* Scroll durumunda ortalamayı korur */
+}
+
+.profile-container {
+    max-width: 900px; 
+    margin: auto; 
+    display: grid;
+    grid-template-columns: 320px 1fr; 
+    gap: 40px;
+    background: white; 
+    padding: 90px 50px 50px; /* Üstten padding'i artırdık, buton için yer açtık */
+    border-radius: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.profile-img-large {
+    width: 100%; height: 400px; background: #eee;
+    border-radius: 30px; object-fit: cover;
+}
+
+.back-btn-detail {
+    position: absolute; 
+    top: 35px; /* Beyaz kutunun en üst boşluğuna yerleşti */
+    left: 50px;
+    font-weight: 700; 
+    font-size: 0.8rem;
+    cursor: pointer; 
+    color: var(--color-blue);
+    letter-spacing: 1px;
+    transition: 0.3s;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+}
+
+.back-btn-detail:hover { 
+    color: var(--color-orange); 
+    opacity: 1;
+    transform: translateX(-3px); 
+}
+
+/* --- MOBİL VE TABLET UYUMLULUK GÜNCELLEMESİ --- */
+@media (max-width: 1024px) {
+    /* Tabletler için: Yazıları ve boşlukları dengeler */
+    .hero h1 { font-size: 3rem; }
+    .profile-container { 
+        grid-template-columns: 1fr; 
+        gap: 30px; 
+        margin: 20px;
+    }
+    .section-padding { padding: 60px 5%; }
+}
+
+@media (max-width: 768px) {
+    /* Telefonlar için: Ekranı en verimli hale getirir */
+    nav { padding: 10px 5%; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero p { font-size: 1.1rem; }
+    
+    .nav-links { display: none; } /* Mobilde menüyü gizler */
+    
+    .process-grid { grid-template-columns: 1fr; }
+    
+    .profile-container { 
+        padding: 80px 25px 30px; 
+        border-radius: 20px;
+        margin: 10px;
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-img-large { height: 280px; }
+    
+    #status-badge { font-size: 0.75rem; padding: 6px 15px; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+    
+    #sss { padding: 40px 20px; margin: 40px 10px; }
+}
+
+/* --- UZMAN KARTLARI VE MODAL DÜZENLEMESİ --- */
+        #team-profile-page div[onclick]:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        #team-profile-page .modal-content {
+            max-height: 85vh; /* Mobilde ekranın dışına taşmasını engeller */
+            overflow-y: auto; /* İçerik çoksa kutu içinde kaydırma yapar */
+        }
+        /* --- AÇIK/KAPALI GÖSTERGESİ --- */
+.status-open {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.status-closed {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* Yeşil nokta parlaması */
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(46, 125, 50, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+}
+
+.pulse-animation {
+    animation: pulse-green 2s infinite;
+}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-box">
+            <img src="images/logo1.png" alt="Logo" class="logo-img">
+            <div>
+                <p style="font-family:'Playfair Display'; font-weight:700; color:var(--color-teal); font-size:1.2rem; line-height:1;">SELÂM</p>
+                <p style="font-size:0.6rem; letter-spacing:2px; color:var(--color-blue); font-weight:600;">ÇOCUK ATÖLYESİ</p>
+            </div>
+        </a>
+        <div id="status-container" style="text-align: center; margin-top: 20px;">
+    <span id="status-badge" style="padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 8px;">
+        <span id="status-dot" style="width: 10px; height: 10px; border-radius: 50%; scale: 1;"></span>
+        <span id="status-text">Yükleniyor...</span>
+    </span>
+</div>
+        <ul class="nav-links">
+            <li><a href="#surec">Süreç</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleTeamProfile(true)">Ekibimiz</a></li>
+            <li><a href="#sss">Soru & Cevap</a></li>
+            <li><a href="javascript:void(0)" onclick="toggleContact(true)" class="nav-contact-btn">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <main id="main-content">
+        <section class="hero">
+            <h1>Geleceğe Güvenle <br>Selâm Verin</h1>
+            <p>Çocukluktan ergenliğe, aile içindeki her düğümü sevgi ve uzmanlıkla çözmek için buradayız.</p>
+            <div>
+                <button onclick="toggleContact(true)" style="padding:18px 40px; background:var(--color-teal); color:white; border-radius:50px; border:none; font-weight:700; cursor:pointer; font-size:1.1rem;">Hemen Başlayın</button>
+            </div>
+        </section>
+
+        <section class="section-padding" id="alanlar">
+            <h2 style="text-align:center; font-family:'Playfair Display'; font-size:2.5rem; color:var(--color-teal);">Neden Buradayız?</h2>
+            <div class="tag-container">
+                <div class="tag">🎯 Odak Problemleri</div>
+                <div class="tag">🌱 Özgüven Eksikliği</div>
+                <div class="tag">🛡️ Kaygı Yönetimi</div>
+                <div class="tag">🤝 Sosyal Beceri</div>
+                <div class="tag">🏠 Aile Danışmanlığı</div>
+                <div class="tag">🎓 Okul Başarısı</div>
+            </div>
+        </section>
+
+        <section class="section-padding" id="surec" style="background:#f8f9fa;">
+            <h2 style="text-align:center; font-family:'Playfair Display'; font-size:2.5rem; color:var(--color-teal);">3 Adımlı Yol Haritamız</h2>
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-num">01</div>
+                    <h3 style="color:var(--color-orange); margin-bottom:15px;">Ön Görüşme</h3>
+                    <p>Sizi ve çocuğunuzu tanıyor, ihtiyaçlarınızı en ince ayrıntısına kadar dinliyoruz.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-num" style="background:var(--color-pink)">02</div>
+                    <h3 style="color:var(--color-teal); margin-bottom:15px;">Uzman Analizi</h3>
+                    <p>Bilimsel yöntemlerle durumu değerlendirip size özel bir çalışma planı oluşturuyoruz.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-num" style="background:var(--color-yellow)">03</div>
+                    <h3 style="color:var(--color-orange); margin-bottom:15px;">Gelişim Takibi</h3>
+                    <p>Düzenli seanslar ve aile bilgilendirmeleri ile süreci birlikte yönetiyoruz.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sss">
+            <h2 style="text-align:center; font-family:'Playfair Display'; font-size:2.5rem;">Sıkça Sorulanlar</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-btn" onclick="toggleFaq(this)">Atölyeler kaç yaş için uygun? <span>+</span></button>
+                    <div class="faq-content">Duyusal oyun atölyelerimiz 2-6 yaş, danışmanlık hizmetlerimiz ise her yaş grubu için uygundur.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn" onclick="toggleFaq(this)">İlk görüşme ücretli mi? <span>+</span></button>
+                    <div class="faq-content">Ön bilgi ve tanışma görüşmelerimiz için WhatsApp hattımızdan randevu alabilirsiniz.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn" onclick="toggleFaq(this)">Seans süresi ne kadardır? <span>+</span></button>
+                    <div class="faq-content">Bireysel seanslarımız 50 dakika, grup atölyelerimiz ise 60-90 dakika sürmektedir.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="team-profile-page" class="modal">
+    <div class="modal-content">
+        <span style="position:absolute; right:30px; top:30px; cursor:pointer; font-size:2.5rem;" onclick="toggleTeamProfile(false)">×</span>
+        <h2 style="font-family:'Playfair Display'; margin-bottom:35px; color:var(--color-teal); text-align:center;">Uzman Kadromuz</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:25px;">
+            <div onclick="openExpert('Uzman TALHA talha', 'Klinik Psikolog', 'Rabia Hanım uzmanlık alanında 10 yıllık deneyime sahiptir...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
+                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
+                <h4 style="color:var(--color-teal);">Uzman talha</h4>
+                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Klinik Psikolog</p>
+            </div>
+            <div onclick="openExpert('Uzman Talha Yılmaz', 'Aile Danışmanı', 'Ebru Hanım aile içi iletişim süreçlerinde uzmandır...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
+                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
+                <h4 style="color:var(--color-teal);">Uzman Talha Yılmaz</h4>
+                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Aile Danışmanı</p>
+            </div>
+             <div onclick="openExpert('Uzman Talha Karabulut', 'Aile Danışmanı', 'Ebru Hanım aile içi iletişim süreçlerinde uzmandır...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
+                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
+                <h4 style="color:var(--color-teal);">Uzman Talha Karabulut</h4>
+                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Aile Danışmanı</p>
+            </div>
+             <div onclick="openExpert('Uzman Talha Talha Talha', 'Aile Danışmanı', 'Ebru Hanım aile içi iletişim süreçlerinde uzmandır...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
+                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
+                <h4 style="color:var(--color-teal);">Uzman Talha Talha Talha</h4>
+                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Aile Danışmanı</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="expert-detail-page">
+    <span style="position:fixed; right:40px; top:30px; cursor:pointer; font-size:3rem; color:var(--color-teal); z-index:5000;" onclick="toggleExpertDetail(false)">×</span>
+    
+    <div class="profile-container">
+        <div class="back-btn-detail" onclick="toggleExpertDetail(false)">← GERİ DÖN</div>
+        <div class="profile-left">
+            <div class="profile-img-large"></div>
+            <h2 id="detail-name" style="margin-top:20px; color:var(--color-teal);">Uzman Adı</h2>
+            <p id="detail-title" style="color:var(--color-blue); font-weight:600;">Ünvan</p>
+        </div>
+        <div class="profile-right">
+            <h3 style="color:var(--color-orange); margin-bottom:15px;">Özgeçmiş & Uzmanlık</h3>
+            <p id="detail-bio" style="color:#555; line-height:1.8;">Bilgiler yükleniyor...</p>
+        </div>
+    </div>
+</div>
+    <div id="contact-page">
+        <div class="close-contact" onclick="toggleContact(false)">← ANA SAYFAYA DÖN</div>
+        <h2 style="font-family:'Playfair Display'; font-size:3rem; color:var(--color-teal); margin-bottom:10px;">Bize Ulaşın</h2>
+        <p style="color:#666; margin-bottom:20px;">Size en hızlı nasıl yardımcı olabiliriz?</p>
+        
+        <div class="contact-grid">
+            <a href="https://wa.me/905XXXXXXXXX" class="contact-card" style="color:#25D366;">
+                <p style="font-size:2rem;">💬</p>
+                <strong>WhatsApp</strong>
+            </a>
+            <a href="tel:+905XXXXXXXXX" class="contact-card" style="color:var(--color-blue);">
+                <p style="font-size:2rem;">📞</p>
+                <strong>Hemen Ara</strong>
+            </a>
+            <a href="sms:+905XXXXXXXXX" class="contact-card" style="color:var(--color-pink);">
+                <p style="font-size:2rem;">✉️</p>
+                <strong>SMS Gönder</strong>
+            </a>
+            <a href="https://www.google.com/maps/dir//Bulgurlu,+Sevgi+Sk.+No:3,+34696+%C3%9Csk%C3%BCdar%2F%C4%B0stanbul/" target="_blank" class="contact-card" style="color:var(--color-orange);">
+    <p style="font-size:2rem;">📍</p>
+    <strong>Konum</strong>
+</a>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <h2 style="font-family:'Playfair Display'; margin-bottom:15px;">Selâm Çocuk Atölyesi</h2>
+        <p>Geleceğe sevgiyle, oyunla ve güvenle bakıyoruz.</p>
+        <p style="margin-top:30px; font-size:0.8rem; opacity:0.6;">&copy; 2026 Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+    // 1. Ekip Listesini Aç/Kapat
+    function toggleTeamProfile(show) {
+        const modal = document.getElementById('team-profile-page');
+        modal.style.display = show ? 'flex' : 'none';
+        document.body.style.overflow = show ? 'hidden' : 'auto';
+    }
+
+    // 2. İletişim Sayfasını Aç/Kapat
+    function toggleContact(show) {
+        const contact = document.getElementById('contact-page');
+        contact.style.display = show ? 'flex' : 'none';
+        document.body.style.overflow = show ? 'hidden' : 'auto';
+    }
+
+    // 3. Uzman Detayını Aç
+    function openExpert(name, title, bio) {
+        document.getElementById('detail-name').innerText = name;
+        document.getElementById('detail-title').innerText = title;
+        document.getElementById('detail-bio').innerText = bio;
+        
+        const detailPage = document.getElementById('expert-detail-page');
+        detailPage.style.display = 'flex'; // Ortalamak için flex şart
+    }
+
+    // 4. Uzman Detayını Kapat
+    function toggleExpertDetail(show) {
+        document.getElementById('expert-detail-page').style.display = show ? 'flex' : 'none';
+    }
+
+    // 5. SSS Akordiyon Sistemi
+    function toggleFaq(btn) {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+    }
+
+    // 6. Dışarı Tıklayınca Kapatma Mantığı
+    window.onclick = function(e) {
+        if (e.target.id === 'team-profile-page') toggleTeamProfile(false);
+        if (e.target.id === 'contact-page') toggleContact(false);
+        if (e.target.id === 'expert-detail-page') toggleExpertDetail(false);
+    }
+    function updateBusinessStatus() {
+    const now = new Date();
+    // Türkiye saati ayarı (UTC+3)
+    const options = { timeZone: 'Europe/Istanbul', hour: 'numeric', minute: 'numeric', weekday: 'long' };
+    const formatter = new Intl.DateTimeFormat('tr-TR', options);
+    const parts = formatter.formatToParts(now);
+    
+    let hour = parseInt(parts.find(p => p.type === 'hour').value);
+    let day = parts.find(p => p.type === 'weekday').value;
+
+    const statusBadge = document.getElementById('status-badge');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+
+    // ÇALIŞMA SAATLERİ: Hafta içi ve Cmt 09:00 - 18:00, Pazar Kapalı
+    const isOpen = (day  && hour >= 9 && hour < 18);
+
+    if (isOpen) {
+        statusBadge.className = 'status-open';
+        statusDot.style.backgroundColor = '#2e7d32';
+        statusDot.classList.add('pulse-animation');
+        statusText.innerText = 'Şu An Açığız (09:00 - 18:00)';
+    } else {
+        statusBadge.className = 'status-closed';
+        statusDot.style.backgroundColor = '#c62828';
+        statusDot.classList.remove('pulse-animation');
+        statusText.innerText = 'Şu An Kapalıyız (Açılış 09:00)';
+    }
+}
+
+// Sayfa açıldığında ve her dakika kontrol et
+updateBusinessStatus();
+setInterval(updateBusinessStatus, 60000);
+</script>
+</body>
+</html>Ebru
