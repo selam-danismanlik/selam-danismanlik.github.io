@@ -3,1059 +3,685 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selâm Çocuk Atölyesi & Danışmanlık</title>
+    <title>Selâm Çocuk Atölyesi & Danışmanlık | Premium</title>
     <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
     <link rel="apple-touch-icon" href="images/logo.jpeg">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        /* ==========================================================================
+           1. CORE & VARIABLES
+           ========================================================================== */
         :root {
-            --color-pink: #D4A5A5;   /* Gül Kurusu */
-            --color-blue: #78909c;   /* Mavi-Gri */
-            --color-yellow: #FFD54F; /* Hardal Sarı */
-            --color-teal: #546E7A;   /* Koyu Teal */
-            --color-orange: #EF6C00; /* Turuncu */
-            --bg-light: #a8dbe0;
-            --white: #ffffff;
-            --text-dark: #2c3e50;
+            --color-teal: #2A4359;    /* Daha derin, premium bir Teal */
+            --color-orange: #E65C00;  /* Canlı ve güven veren Turuncu */
+            --color-blue: #78909c;
+            --color-pink: #D4A5A5;
+            --bg-light: #F7FAFC;      /* Çok hafif, ferah gri/mavi zemin */
+            --bg-white: #FFFFFF;
+            --text-dark: #1A202C;
+            --text-muted: #4A5568;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 30px rgba(42, 67, 89, 0.08);
+            --shadow-lg: 0 20px 40px rgba(230, 92, 0, 0.15);
+            --radius-lg: 24px;
+            --radius-full: 999px;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background-color: var(--bg-light); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
-
-        /* --- NAVİGASYON --- */
-        nav { 
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
-            padding: 15px 8%; display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 30px rgba(0,0,0,0.03);
-        }
-        .logo-box { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-img { height: 50px; border-radius: 5px; }
-        .nav-links { list-style: none; display: flex; gap: 30px; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         
-        /* İletişim Kutucuğu */
-        .nav-contact-btn { 
-            background: var(--color-orange); color: white !important; 
-            padding: 10px 22px; border-radius: 12px; 
-            box-shadow: 0 4px 15px rgba(239, 108, 0, 0.2); 
-        }
-
-        /* --- HERO --- */
-        .hero { 
-    padding: 80px 8% 40px; /* Üst ve alt padding'i azalttık */
-    text-align: center;
-    background: radial-gradient(circle at top right, #fff5f5, transparent), 
-                radial-gradient(circle at bottom left, #f0f7f9, transparent);
-    min-height: 50vh; /* 70vh'den 50vh'ye düşürdük */
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
-}
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.8rem; color: var(--color-teal); margin-bottom: 20px; line-height: 1.1; }
-        .hero p { font-size: 1.25rem; color: #5d6d7e; max-width: 750px; margin: 0 auto 40px; }
-
-        /* --- ÇALIŞMA ALANLARI (ETİKETLER) --- */
-        .section-padding { padding: 100px 8%; }
-        .tag-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 40px; }
-        .tag { 
-            padding: 18px 35px; border-radius: 20px; font-weight: 700; font-size: 1rem;
-            background: white; border: 1px solid #eee; transition: 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-        }
-        .tag:hover { transform: translateY(-5px); border-color: var(--color-blue); color: var(--color-orange); }
-
-        /* --- SÜREÇ BÖLÜMÜ GÜNCELLEME --- */
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 80px; /* Üstten biraz daha açtık */
-}
-
-.process-card { 
-    background: white; 
-    padding: 60px 40px 40px; /* Üst padding arttı çünkü numara daha yukarıda */
-    border-radius: 35px; 
-    text-align: center;
-    position: relative; 
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-    border: 1px solid rgba(0,0,0,0.03);
-}
-
-/* Kartın üzerine gelince büyüme ve renk değişimi */
-.process-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    border-color: var(--color-blue);
-}
-
-.process-num { 
-    position: absolute; 
-    top: -30px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    width: 70px; 
-    height: 70px; 
-    background: var(--color-teal); 
-    color: white;
-    border-radius: 22px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    font-weight: 800; 
-    font-size: 1.6rem; 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: 0.3s;
-}
-
-.process-card:hover .process-num {
-    transform: translateX(-50%) rotate(10deg) scale(1.1);
-}
-
+        html { scroll-behavior: smooth; }
         
-/* --- BUNLARI EKLE --- */
-/* --- SSS YENİ MODERN TASARIM --- */
-#sss {
-    background-color: #f0f7f9; /* Açık mavi-gri ferah arka plan */
-    border-radius: 50px;
-    margin: 60px 8%;
-    padding: 80px 50px;
-}
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-dark); 
+            background-color: var(--bg-light); 
+            line-height: 1.7; 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
+        }
 
-.faq-container {
-    max-width: 850px;
-    margin: 40px auto 0;
-}
+        /* Tipografi Sınıfları */
+        .playfair { font-family: 'Playfair Display', serif; }
+        .text-teal { color: var(--color-teal); }
+        .text-orange { color: var(--color-orange); }
+        .text-center { text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        .section-pad { padding: 100px 0; }
 
-.faq-item {
-    background: white;
-    margin-bottom: 18px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    border: 1px solid rgba(0,0,0,0.02);
-    overflow: hidden;
-    transition: 0.3s all ease;
-}
+        /* Scroll Animasyonu Başlangıç Değerleri */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-.faq-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-}
+        /* ==========================================================================
+           2. HEADER & NAVIGATION
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            z-index: 1000;
+            transition: var(--transition);
+        }
 
-.faq-btn {
-    width: 100%;
-    padding: 25px 35px;
-    text-align: left;
-    background: none;
-    border: none;
-    font-size: 1.15rem;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--color-teal);
-}
+        .nav-container {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; max-width: 1400px; margin: 0 auto;
+        }
 
-.faq-btn span {
-    width: 35px;
-    height: 35px;
-    background: #f4f7f8;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-orange);
-    font-size: 1.4rem;
-    transition: 0.4s;
-}
+        .brand { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .brand-logo { height: 48px; border-radius: 12px; box-shadow: var(--shadow-sm); }
+        .brand-text h1 { font-size: 1.4rem; color: var(--color-teal); line-height: 1; letter-spacing: -0.5px; }
+        .brand-text span { font-size: 0.65rem; color: var(--color-blue); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
 
-.faq-item.active {
-    border-color: var(--color-orange);
-}
+        /* İşletme Durumu Badge */
+        .status-badge {
+            display: flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border-radius: var(--radius-full);
+            font-size: 0.75rem; font-weight: 700; cursor: pointer;
+            transition: var(--transition); border: 1px solid transparent;
+        }
+        .status-badge:hover { transform: translateY(-2px); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+        
+        .is-open { background: #e8f5e9; color: #2e7d32; border-color: #c8e6c9; }
+        .is-open .status-dot { background: #2e7d32; box-shadow: 0 0 10px rgba(46,125,50,0.5); animation: pulse 2s infinite; }
+        .is-closed { background: #ffebee; color: #c62828; border-color: #ffcdd2; }
+        .is-closed .status-dot { background: #c62828; }
 
-.faq-item.active .faq-btn {
-    color: var(--color-orange);
-    padding-bottom: 15px;
-}
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46,125,50,0.6); }
+            70% { box-shadow: 0 0 0 8px rgba(46,125,50,0); }
+            100% { box-shadow: 0 0 0 0 rgba(46,125,50,0); }
+        }
 
-.faq-item.active .faq-btn span {
-    background: var(--color-orange);
-    color: white;
-    transform: rotate(45deg);
-}
+        /* Menü Linkleri */
+        .nav-menu { display: flex; gap: 35px; align-items: center; list-style: none; }
+        .nav-menu a {
+            text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.95rem;
+            position: relative; padding: 5px 0; transition: var(--transition);
+        }
+        .nav-menu a:not(.btn-contact):hover { color: var(--color-orange); }
+        .nav-menu a:not(.btn-contact)::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--color-orange); transition: var(--transition);
+        }
+        .nav-menu a:not(.btn-contact):hover::after { width: 100%; }
 
-.faq-content {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    padding: 0 35px;
-    color: #666;
-    line-height: 1.8;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        /* CTA Butonu */
+        .btn-contact {
+            background: var(--color-orange); color: var(--bg-white) !important;
+            padding: 12px 28px !important; border-radius: var(--radius-full);
+            box-shadow: var(--shadow-sm); transition: var(--transition);
+        }
+        .btn-contact:hover { background: #CC5200; transform: translateY(-3px); box-shadow: var(--shadow-lg); }
 
-.faq-item.active .faq-content {
-    max-height: 300px;
-    opacity: 1;
-    padding: 0 35px 30px;
-}
+        /* Mobil Menü İkonu */
+        .hamburger { display: none; cursor: pointer; border: none; background: none; font-size: 1.8rem; color: var(--color-teal); }
 
-        /* --- İLETİŞİM OVERLAY (TAM EKRAN) --- */
-        #contact-page {
+        /* ==========================================================================
+           3. HERO (VİTRİN) BÖLÜMÜ
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at top right, rgba(239, 108, 0, 0.05), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(42, 67, 89, 0.08), transparent 40%);
+            padding-top: 80px; text-align: center; position: relative;
+        }
+
+        .hero h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto 45px; }
+
+        .hero-buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; position: relative; z-index: 10; }
+        .btn-row { display: flex; gap: 15px; justify-content: center; }
+
+        .btn-primary, .btn-secondary {
+            padding: 18px 45px; border-radius: var(--radius-full); font-weight: 700; font-size: 1.05rem;
+            cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center;
+            text-decoration: none; width: 280px; border: none; font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary { background: var(--color-teal); color: var(--bg-white); box-shadow: var(--shadow-md); }
+        .btn-primary:hover { background: #1C2D3D; transform: translateY(-4px); box-shadow: 0 15px 35px rgba(28,45,61,0.25); }
+
+        .btn-secondary { background: var(--bg-white); color: var(--color-teal); border: 2px solid var(--color-teal); }
+        .btn-secondary:hover { background: rgba(42,67,89,0.05); transform: translateY(-2px); }
+
+        /* ==========================================================================
+           4. HİZMET ETİKETLERİ (NEDEN BURADAYIZ)
+           ========================================================================== */
+        .tags-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 50px; }
+        
+        .service-tag {
+            background: var(--bg-white); border: 1px solid #E2E8F0; padding: 18px 35px;
+            border-radius: var(--radius-full); font-weight: 600; font-size: 1.05rem;
+            color: var(--color-teal); cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm);
+        }
+        
+        .service-tag:hover {
+            transform: translateY(-6px); border-color: var(--color-orange);
+            color: var(--color-orange); box-shadow: var(--shadow-lg);
+        }
+
+        /* ==========================================================================
+           5. YOLCULUK (SÜREÇ KARTLARI)
+           ========================================================================== */
+        .process-bg { background: var(--bg-white); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 60px; }
+
+        .process-card {
+            background: var(--bg-light); padding: 50px 40px; border-radius: 30px;
+            text-align: center; cursor: pointer; transition: var(--transition);
+            border: 1px solid transparent; position: relative; overflow: hidden;
+        }
+
+        .process-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--color-orange); transform: scaleX(0); transition: var(--transition); transform-origin: left;
+        }
+
+        .process-card:hover { transform: translateY(-12px); background: var(--bg-white); box-shadow: var(--shadow-md); border-color: #E2E8F0; }
+        .process-card:hover::before { transform: scaleX(1); }
+
+        .p-icon { font-size: 3.5rem; margin-bottom: 25px; display: block; }
+        .p-badge { background: #EDF2F7; color: var(--color-teal); padding: 6px 16px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 800; margin-bottom: 20px; display: inline-block; letter-spacing: 1px; }
+        .process-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--color-teal); }
+        .p-link { margin-top: 25px; font-weight: 700; color: var(--color-orange); font-size: 0.95rem; opacity: 0; transform: translateY(10px); transition: var(--transition); display: block; }
+        .process-card:hover .p-link { opacity: 1; transform: translateY(0); }
+
+        /* ==========================================================================
+           6. SIKÇA SORULANLAR (AKORDİYON)
+           ========================================================================== */
+        .faq-box { max-width: 800px; margin: 60px auto 0; }
+        .faq-item {
+            background: var(--bg-white); margin-bottom: 20px; border-radius: 20px;
+            border: 1px solid #E2E8F0; overflow: hidden; transition: var(--transition);
+        }
+        .faq-item:hover { box-shadow: var(--shadow-sm); }
+        
+        .faq-btn {
+            width: 100%; padding: 25px 30px; text-align: left; background: none; border: none;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center; color: var(--color-teal); font-family: 'Inter', sans-serif;
+        }
+        .faq-icon {
+            width: 36px; height: 36px; background: var(--bg-light); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: var(--color-teal);
+            font-size: 1.5rem; transition: var(--transition);
+        }
+        
+        .faq-item.active { border-color: var(--color-orange); }
+        .faq-item.active .faq-btn { color: var(--color-orange); padding-bottom: 10px; }
+        .faq-item.active .faq-icon { background: var(--color-orange); color: var(--bg-white); transform: rotate(45deg); }
+        
+        .faq-content {
+            max-height: 0; overflow: hidden; opacity: 0; padding: 0 30px;
+            color: var(--text-muted); line-height: 1.8; transition: all 0.4s ease;
+        }
+        .faq-item.active .faq-content { max-height: 400px; opacity: 1; padding: 0 30px 30px; }
+
+        /* ==========================================================================
+           7. MODALS & OVERLAYS (SİHİRLİ PENCERELER)
+           ========================================================================== */
+        .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-light); z-index: 2000;
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(26, 32, 44, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: var(--transition); padding: 20px;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(1.05); } to { opacity: 1; transform: scale(1); } }
         
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 90%; max-width: 550px; margin-top: 40px; }
-        .contact-card { 
-            background: white; padding: 35px; border-radius: 25px; text-decoration: none;
-            text-align: center; border: 1px solid #eee; transition: 0.3s;
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: var(--bg-white); width: 100%; max-width: 900px;
+            border-radius: 30px; padding: 50px; position: relative;
+            transform: translateY(30px) scale(0.95); transition: var(--transition);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-height: 90vh; overflow-y: auto;
         }
-        .contact-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); border-color: var(--color-orange); }
-        .close-contact { position: absolute; top: 40px; left: 8%; font-weight: 800; cursor: pointer; color: var(--color-teal); display: flex; align-items: center; gap: 8px; }
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
 
-        /* --- MODAL (EKİBİMİZ) --- */
-        .modal { 
-    display: none; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: rgba(0,0,0,0.6); 
-    z-index: 3000; 
-    align-items: center; /* Dikeyde ortala */
-    justify-content: center; /* Yatayda ortala */
-}
-        .modal-content { background: white; padding: 50px; border-radius: 40px; width: 90%; max-width: 900px; position: relative; }
+        .btn-close {
+            position: absolute; top: 25px; right: 30px; background: var(--bg-light);
+            border: none; width: 45px; height: 45px; border-radius: 50%;
+            font-size: 1.5rem; color: var(--text-muted); cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: var(--transition);
+        }
+        .btn-close:hover { background: #FEEBC8; color: var(--color-orange); transform: rotate(90deg); }
 
-        footer { padding: 80px 8% 40px; background: var(--color-teal); color: white; text-align: center; }
+        /* Ekip & İletişim Izgaraları */
+        .contact-links { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 600px; margin: 40px auto 0; }
+        .contact-card {
+            padding: 30px; border-radius: 20px; border: 1px solid #E2E8F0; text-align: center;
+            text-decoration: none; color: var(--text-dark); transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+        }
+        .contact-card:hover { transform: translateY(-5px); border-color: var(--color-teal); box-shadow: var(--shadow-md); }
+        .contact-card span { font-size: 2.5rem; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 40px; }
+        .team-member { background: var(--bg-light); padding: 30px 20px; border-radius: 24px; text-align: center; cursor: pointer; transition: var(--transition); }
+        .team-member:hover { background: var(--bg-white); box-shadow: var(--shadow-md); transform: translateY(-8px); }
+        .avatar { width: 110px; height: 110px; border-radius: 50%; background: #CBD5E0; margin: 0 auto 15px; object-fit: cover; border: 4px solid var(--bg-white); box-shadow: var(--shadow-sm); }
+
+        /* ==========================================================================
+           8. MOBİL UYARLAMA
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh;
+                background: var(--bg-white); flex-direction: column; justify-content: center;
+                padding: 50px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: 0.5s ease;
+            }
+            .nav-menu.active { right: 0; }
+            .hamburger { display: block; z-index: 1001; }
+            .hamburger.active { color: var(--color-orange); }
+            .status-badge { display: none; } /* Mobilde menü kalabalık olmasın diye gizlenebilir veya hamburger yanına alınabilir */
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .contact-grid { grid-template-columns: 1fr; }
+            .section-pad { padding: 60px 0; }
+            .hero h1 { font-size: 2.8rem; }
+            .btn-row { flex-direction: column; width: 100%; }
+            .btn-primary, .btn-secondary { width: 100%; max-width: 350px; }
+            .contact-links { grid-template-columns: 1fr; }
+            .modal-content { padding: 40px 25px; }
         }
         
-/* --- NAVİGASYON HOVER DÜZENLEMESİ --- */
-
-/* Menü Linkleri (Süreç, Ekibimiz, SSS) */
-.nav-links a:not(.nav-contact-btn) {
-    color: var(--text-dark);
-    position: relative;
-    padding-bottom: 5px;
-}
-
-.nav-links a:not(.nav-contact-btn):hover {
-    color: var(--color-orange); /* Sadece üzerine gelince turuncu olur */
-}
-
-/* Linklerin altındaki çizgi efekti */
-.nav-links a:not(.nav-contact-btn)::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--color-orange);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:not(.nav-contact-btn):hover::after {
-    width: 100%;
-}
-
-/* --- YENİLENMİŞ NAVİGASYON STİLLERİ --- */
-
-/* Tüm navigasyon linklerinin ortak başlangıç hali */
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-dark) !important; /* Tüm yazılar başta koyu renk */
-    font-weight: 600;
-    font-size: 0.9rem;
-    position: relative;
-    padding: 8px 0;
-    transition: color 0.3s ease;
-    background: none !important; /* Arka plan kutusunu kaldırdık */
-    box-shadow: none !important; /* Varsa gölgeyi kaldırdık */
-}
-
-/* Mouse ile üzerine gelince (Hepsi için geçerli) */
-.nav-links a:hover {
-    color: var(--color-orange) !important; /* Üzerine gelince turuncu olur */
-}
-
-/* Alt çizgi efekti (Hepsi için geçerli) */
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--color-orange);
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* --- EKİP DETAY SAYFASI STİLLERİ --- */
-#expert-detail-page {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    background: rgba(253, 251, 250, 0.98); /* Hafif şeffaf arka plan */
-    z-index: 4000; 
-    display: none; /* JavaScript ile flex'e dönecek */
-    
-    /* Ortalamayı sağlayan sihirli satırlar */
-    justify-content: center; 
-    align-items: center; 
-    
-    overflow-y: auto; 
-    padding: 20px;
-    animation: fadeIn 0.3s ease;
-}
-
-#expert-detail-page .profile-container {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    margin: auto; /* Scroll durumunda ortalamayı korur */
-}
-
-.profile-container {
-    max-width: 900px; 
-    margin: auto; 
-    display: grid;
-    grid-template-columns: 320px 1fr; 
-    gap: 40px;
-    background: white; 
-    padding: 90px 50px 50px; /* Üstten padding'i artırdık, buton için yer açtık */
-    border-radius: 40px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    position: relative;
-}
-
-.profile-img-large {
-    width: 100%; height: 400px; background: #eee;
-    border-radius: 30px; object-fit: cover;
-}
-
-.back-btn-detail {
-    position: absolute; 
-    top: 35px; /* Beyaz kutunun en üst boşluğuna yerleşti */
-    left: 50px;
-    font-weight: 700; 
-    font-size: 0.8rem;
-    cursor: pointer; 
-    color: var(--color-blue);
-    letter-spacing: 1px;
-    transition: 0.3s;
-    opacity: 0.6;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    z-index: 10;
-}
-
-.back-btn-detail:hover { 
-    color: var(--color-orange); 
-    opacity: 1;
-    transform: translateX(-3px); 
-}
-
-/* --- MOBİL VE TABLET UYUMLULUK GÜNCELLEMESİ --- */
-@media (max-width: 1024px) {
-    /* Tabletler için: Yazıları ve boşlukları dengeler */
-    .hero h1 { font-size: 3rem; }
-    .profile-container { 
-        grid-template-columns: 1fr; 
-        gap: 30px; 
-        margin: 20px;
-    }
-    .section-padding { padding: 60px 5%; }
-}
-
-@media (max-width: 768px) {
-    /* Genel Sıfırlama */
-    html, body { overflow-x: hidden; height: auto !important; }
-
-    nav { padding: 10px 5%; }
-    
-    .hero { 
-        padding: 40px 8% 20px; 
-        min-height: auto !important; /* Yüksekliği içeriğe göre ayarlar, boşluğu bitirir */
-        height: auto !important;
-    }
-    
-    .hero h1 { font-size: 2.2rem; }
-    .hero p { font-size: 1.1rem; margin-bottom: 20px; }
-    
-    .nav-links { display: none; } 
-    
-    .mobile-nav-buttons {
-        display: flex !important;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 5px;
-        padding-bottom: 20px;
-    }
-
-    .process-grid { grid-template-columns: 1fr; gap: 40px; }
-    
-    .profile-container { 
-        padding: 60px 20px 30px; 
-        border-radius: 20px;
-        margin: 10px;
-        grid-template-columns: 1fr;
-    }
-    
-    .profile-img-large { height: 250px; }
-    
-    #status-badge { font-size: 0.7rem; padding: 6px 12px; }
-
-    .contact-grid { grid-template-columns: 1fr; }
-    
-    /* Boşlukları öldüren kritik ayarlar */
-    #sss { padding: 30px 20px; margin: 20px 10px; }
-    .section-padding { padding: 30px 5% !important; }
-    footer { padding: 40px 8%; }
-}
-
-/* --- UZMAN KARTLARI VE MODAL DÜZENLEMESİ --- */
-        #team-profile-page div[onclick]:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-        }
-
-        #team-profile-page .modal-content {
-            max-height: 85vh; /* Mobilde ekranın dışına taşmasını engeller */
-            overflow-y: auto; /* İçerik çoksa kutu içinde kaydırma yapar */
-        }
-        /* --- AÇIK/KAPALI GÖSTERGESİ --- */
-.status-open {
-    background: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #c8e6c9;
-}
-
-.status-closed {
-    background: #ffebee;
-    color: #c62828;
-    border: 1px solid #ffcdd2;
-}
-
-/* Yeşil nokta parlaması */
-@keyframes pulse-green {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(46, 125, 50, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
-}
-
-.pulse-animation {
-    animation: pulse-green 2s infinite;
-}
-
-.mobile-nav-buttons {
-        display: none;
-    }
-
-    /* Sadece telefon ekranında (768px ve altı) göster */
-    @media (max-width: 768px) {
-        .mobile-nav-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 5px;
-        }
-    }
-
-#contact-page {
-    /* Mevcut diğer kodların kalsın, sadece aşağıdakileri ekle veya güncelle */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-light);
-    z-index: 2000;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* İçeriği en tepeden başlat */
-    padding-top: 80px; /* Geri dön butonu için yer aç */
-    overflow-y: auto; /* İLETİŞİM SAYFASI KENDİ İÇİNDE KAYABİLSİN */
-    -webkit-overflow-scrolling: touch; /* iPhone'larda yağ gibi kaysın */
-}
-.process-card-premium {
-    background: #fdfdfd;
-    padding: 40px 30px;
-    border-radius: 24px;
-    border: 1px solid #eee;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.process-card-premium:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-    border-color: var(--color-teal);
-}
-
-.step-number {
-    font-size: 4rem;
-    font-weight: 900;
-    color: rgba(84, 110, 122, 0.05);
-    position: absolute;
-    top: 10px;
-    right: 20px;
-}
-
-.discover-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: var(--color-teal);
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-/* Tam Ekran Overlay */
-.journey-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    z-index: 9999;
-    display: none;
-    overflow-y: auto;
-    padding: 100px 20px 40px;
-}
-
-.journey-close {
-    position: fixed;
-    top: 30px;
-    left: 30px;
-    background: var(--color-teal);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 600;
-    z-index: 10000;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.journey-inner-content {
-    max-width: 800px;
-    margin: 0 auto;
-    animation: fadeInUp 0.6s ease;
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.journey-bg {
-    background: linear-gradient(180deg, #ffffff 0%, #f0f9fa 100%);
-}
-
-.premium-title {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    color: var(--color-teal);
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.premium-subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 50px;
-    font-size: 1.1rem;
-}
-
-.journey-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.journey-card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0,0,0,0.05);
-    padding: 40px 30px;
-    border-radius: 30px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-}
-
-.journey-card:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 25px 50px rgba(84, 110, 122, 0.15);
-    background: #fff;
-}
-
-.card-icon {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    display: block;
-}
-
-.card-badge {
-    background: #e0f2f1;
-    color: var(--color-teal);
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    margin-bottom: 15px;
-}
-
-.journey-card h3 {
-    font-family: 'Playfair Display', serif;
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-}
-
-.card-btn {
-    margin-top: 25px;
-    font-weight: 700;
-    color: var(--color-teal);
-    font-size: 0.9rem;
-    border-bottom: 2px solid transparent;
-    display: inline-block;
-    transition: 0.3s;
-}
-
-.journey-card:hover .card-btn {
-    border-color: var(--color-orange);
-}
-
-/* Mobilde pürüzsüz görünüm */
-@media (max-width: 768px) {
-    .premium-title { font-size: 1.8rem; }
-    .journey-grid { grid-template-columns: 1fr; padding: 0 20px; }
-}
+        /* Footer */
+        footer { background: var(--color-teal); color: var(--bg-white); padding: 80px 5% 40px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo-box">
-            <img src="images/logo1.png" alt="Logo" class="logo-img">
-            <div>
-                <p style="font-family:'Playfair Display'; font-weight:700; color:var(--color-teal); font-size:1.2rem; line-height:1;">SELÂM</p>
-                <p style="font-size:0.6rem; letter-spacing:2px; color:var(--color-blue); font-weight:600;">ÇOCUK ATÖLYESİ</p>
-            </div>
-        </a>
-        <div id="status-container" style="text-align: center; cursor: pointer;" onclick="toggleHoursModal(true)">
-    <span id="status-badge" style="padding: 6px 15px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 6px;">
-        <span id="status-dot" style="width: 8px; height: 8px; border-radius: 50%;"></span>
-        <span id="status-text">Yükleniyor...</span>
-        <span style="font-size: 0.6rem; opacity: 0.6;">ⓘ</span>
-    </span>
-</div>
-        <ul class="nav-links">
-            <li><a href="#surec">Süreç</a></li>
-            <li><a href="javascript:void(0)" onclick="toggleTeamProfile(true)">Ekibimiz</a></li>
-            <li><a href="#sss">Soru & Cevap</a></li>
-            <li><a href="javascript:void(0)" onclick="toggleContact(true)" class="nav-contact-btn">İletişim</a></li>
-        </ul>
-    </nav>
-
-    <main id="main-content">
-        <section class="hero">
-    <h1>Geleceğe Güvenle <br>Selâm Verin</h1>
-    <p>Çocukluktan ergenliğe, aile içindeki her düğümü sevgi ve uzmanlıkla çözmek için buradayız.</p>
-    
-    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 10px;">
-        <button onclick="toggleContact(true)" style="padding:18px 40px; background:var(--color-teal); color:white; border-radius:50px; border:none; font-weight:700; cursor:pointer; font-size:1.1rem; width: 260px; box-shadow: 0 10px 20px rgba(84, 110, 122, 0.2);">
-            Hemen Başlayın
-        </button>
-        
-        <div class="mobile-nav-buttons">
-            <button onclick="toggleTeamProfile(true)" style="padding:12px 30px; background:white; color:var(--color-teal); border: 2px solid var(--color-teal); border-radius:50px; font-weight:600; cursor:pointer; width: 260px; margin-bottom: 10px;">
-            Ekibimiz
-            </button>
-            <a href="#sss" style="text-decoration:none; display: block; padding:12px 30px; background:rgba(255,255,255,0.7); color:var(--color-teal); border: 1px solid rgba(84, 110, 122, 0.3); border-radius:50px; font-weight:600; text-align:center; width: 260px; font-size: 0.9rem;">
-            Sıkça Sorulanlar
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <img src="images/logo.jpeg" alt="Logo" class="brand-logo" onerror="this.src='https://via.placeholder.com/48/2A4359/FFFFFF?text=S'">
+                <div class="brand-text">
+                    <h1 class="playfair">SELÂM</h1>
+                    <span>Çocuk Atölyesi</span>
+                </div>
             </a>
+
+            <div id="statusBtn" class="status-badge is-closed" onclick="openModal('modal-hours')">
+                <div class="status-dot"></div>
+                <span id="statusTxt">Yükleniyor...</span>
+            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="javascript:void(0)" onclick="openJourney(1); closeMobileMenu()">Süreç</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('modal-team'); closeMobileMenu()">Ekibimiz</a></li>
+                <li><a href="#sss-section" onclick="closeMobileMenu()">Soru & Cevap</a></li>
+                <li><a href="javascript:void(0)" onclick="openModal('modal-contact'); closeMobileMenu()" class="btn-contact">İletişim</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()">☰</button>
         </div>
-    </div>
-</section>
+    </header>
 
-<style>
-    /* Masaüstünde bu butonları gizle */
-    .mobile-nav-buttons {
-        display: none;
-    }
-
-    /* Sadece telefon ekranında (768px ve altı) göster */
-    @media (max-width: 768px) {
-        .mobile-nav-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 5px;
-        }
-    }
-</style>
-
-        <section class="section-padding" id="alanlar">
-            <h2 style="text-align:center; font-family:'Playfair Display'; font-size:2.5rem; color:var(--color-teal);">Neden Buradayız?</h2>
-            <div class="tag-container">
-    <div class="tag" onclick="openServiceDetail('Odak Problemleri', '🎯', 'Çocuğunuzun dikkatini toplamakta zorlandığını mı fark ediyorsunuz? Atölyemizde dikkat geliştirici oyunlar ve uzman eşliğinde yapılan aktivitelerle odak süresini bilimsel yöntemlerle artırıyoruz.')">🎯 Odak Problemleri</div>
-    <div class="tag" onclick="openServiceDetail('Özgüven Eksikliği', '🌱', 'Her çocuk özeldir. Kendini ifade etmekte çekinen miniklerimiz için sosyal beceri grupları ve drama çalışmalarıyla içlerindeki potansiyeli sevgiyle dışarı çıkarıyoruz.')">🌱 Özgüven Eksikliği</div>
-    <div class="tag" onclick="openServiceDetail('Kaygı Yönetimi', '🛡️', 'Okul korkusu, ayrılık kaygısı veya sınav stresi... Uzman kadromuzla çocukların duygularını anlamlandırıyor ve onlara baş etme yöntemlerini öğretiyoruz.')">🛡️ Kaygı Yönetimi</div>
-    <div class="tag" onclick="openServiceDetail('Sosyal Beceri', '🤝', 'Akranlarıyla iletişim kurmak, paylaşmak ve empati yapmak... Atölyelerimizde çocuklarımız sosyal dünyayı güvenli bir ortamda deneyimleyerek öğreniyor.')">🤝 Sosyal Beceri</div>
-    <div class="tag" onclick="openServiceDetail('Aile Danışmanlığı', '🏠', 'Sadece çocuklarla değil, ebeveynlerle de el ele yürüyoruz. Aile içindeki iletişimi güçlendirmek ve düğümleri birlikte çözmek için buradayız.')">🏠 Aile Danışmanlığı</div>
-    <div class="tag" onclick="openServiceDetail('Okul Başarısı', '🎓', 'Akademik başarı sadece ders çalışmak değildir. Doğru öğrenme yöntemleri ve motivasyon çalışmalarıyla okul sürecini keyifli bir yolculuğa dönüştürüyoruz.')">🎓 Okul Başarısı</div>
-</div>
+    <main>
+        <section class="hero">
+            <div class="container reveal">
+                <h1 class="playfair text-teal">Geleceğe Güvenle <br><span class="text-orange">Selâm Verin</span></h1>
+                <p>Çocuk ve ergen terapisiyle aile bağlarını güçlendiriyor, her düğümü sevgi ve uzmanlıkla çözüyoruz. Sizi ve çocuğunuzu anlamak için buradayız.</p>
+                
+                <div class="hero-buttons">
+                    <button onclick="openModal('modal-contact')" class="btn-primary">Hemen Başlayın</button>
+                    <div class="btn-row">
+                        <button onclick="openJourney(1)" class="btn-secondary">🚀 Nasıl Çalışıyoruz?</button>
+                        <button onclick="openModal('modal-team')" class="btn-secondary">👥 Ekibimizle Tanışın</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="section-padding journey-bg">
-    <div class="container">
-        <h2 class="premium-title">Çocuğunuzun Başarı Yolculuğu</h2>
-        <p class="premium-subtitle">Düğümleşmiş sorunları, sevgi ve bilimle çözüme ulaştıran 3 temel adımımız.</p>
-        
-        <div class="journey-grid">
-            <div class="journey-card step-1" onclick="openJourney(1)">
-                <div class="card-icon">🔍</div>
-                <div class="card-badge">ADIM 01</div>
-                <h3>Tanışma & Analiz</h3>
-                <p>Çocuğunuzun potansiyelini bilimsel yöntemlerle keşfediyoruz.</p>
-                <div class="card-btn">Detayları Keşfet</div>
-            </div>
-
-            <div class="journey-card step-2" onclick="openJourney(2)">
-                <div class="card-icon">🧩</div>
-                <div class="card-badge">ADIM 02</div>
-                <h3>Gelişim Atölyesi</h3>
-                <p>Oyun ve sanatla harmanlanmış gelişim programları uyguluyoruz.</p>
-                <div class="card-btn">Detayları Keşfet</div>
-            </div>
-
-            <div class="journey-card step-3" onclick="openJourney(3)">
-                <div class="card-icon">🚀</div>
-                <div class="card-badge">ADIM 03</div>
-                <h3>Sürekli Takip</h3>
-                <p>Süreci raporlayarak aileyi her aşamada destekliyoruz.</p>
-                <div class="card-btn">Detayları Keşfet</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div id="journey-overlay" class="journey-overlay">
-    <button class="journey-close" onclick="closeJourney()">✕ Geri Dön</button>
-    <div id="journey-content" class="journey-inner-content">
-        </div>
-</div>
-
-        <section id="sss">
-            <h2 style="text-align:center; font-family:'Playfair Display'; font-size:2.5rem;">Sıkça Sorulanlar</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-btn" onclick="toggleFaq(this)">Atölyeler kaç yaş için uygun? <span>+</span></button>
-                    <div class="faq-content">Duyusal oyun atölyelerimiz 2-6 yaş, danışmanlık hizmetlerimiz ise her yaş grubu için uygundur.</div>
+        <section id="alanlar" class="section-pad">
+            <div class="container text-center reveal">
+                <h2 class="playfair text-teal" style="font-size: 2.8rem;">Neden Buradayız?</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 10px;">İhtiyaç duyduğunuz her alanda bilimsel ve sevgi dolu çözümler.</p>
+                
+                <div class="tags-wrapper">
+                    <div class="service-tag" onclick="openService('Odak Problemleri', '🎯', 'Çocuğunuzun dikkatini toplamakta zorlandığını mı fark ediyorsunuz? Atölyemizde dikkat geliştirici oyunlar ve uzman eşliğinde yapılan aktivitelerle odak süresini bilimsel yöntemlerle artırıyoruz.')">
+                        🎯 Odak Problemleri
+                    </div>
+                    <div class="service-tag" onclick="openService('Özgüven Eksikliği', '🌱', 'Her çocuk özeldir. Kendini ifade etmekte çekinen miniklerimiz için sosyal beceri grupları ve drama çalışmalarıyla içlerindeki potansiyeli sevgiyle dışarı çıkarıyoruz.')">
+                        🌱 Özgüven Eksikliği
+                    </div>
+                    <div class="service-tag" onclick="openService('Kaygı Yönetimi', '🛡️', 'Okul korkusu, ayrılık kaygısı veya sınav stresi... Uzman kadromuzla çocukların duygularını anlamlandırıyor ve onlara baş etme yöntemlerini öğretiyoruz.')">
+                        🛡️ Kaygı Yönetimi
+                    </div>
+                    <div class="service-tag" onclick="openService('Sosyal Beceri', '🤝', 'Akranlarıyla iletişim kurmak, paylaşmak ve empati yapmak... Atölyelerimizde çocuklarımız sosyal dünyayı güvenli bir ortamda deneyimleyerek öğreniyor.')">
+                        🤝 Sosyal Beceri
+                    </div>
+                    <div class="service-tag" onclick="openService('Aile Danışmanlığı', '🏠', 'Sadece çocuklarla değil, ebeveynlerle de el ele yürüyoruz. Aile içindeki iletişimi güçlendirmek ve düğümleri birlikte çözmek için buradayız.')">
+                        🏠 Aile Danışmanlığı
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-btn" onclick="toggleFaq(this)">İlk görüşme ücretli mi? <span>+</span></button>
-                    <div class="faq-content">Ön bilgi ve tanışma görüşmelerimiz için WhatsApp hattımızdan randevu alabilirsiniz.</div>
+            </div>
+        </section>
+
+        <section class="section-pad process-bg">
+            <div class="container reveal">
+                <div class="text-center">
+                    <h2 class="playfair text-teal" style="font-size: 2.8rem;">Başarı Yolculuğumuz</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-top: 10px;">Düğümleşmiş sorunları, 3 temel adımda çözüme ulaştırıyoruz.</p>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-btn" onclick="toggleFaq(this)">Seans süresi ne kadardır? <span>+</span></button>
-                    <div class="faq-content">Bireysel seanslarımız 50 dakika, grup atölyelerimiz ise 60-90 dakika sürmektedir.</div>
+                
+                <div class="grid-3">
+                    <div class="process-card" onclick="openJourney(1)">
+                        <span class="p-icon">🔍</span>
+                        <span class="p-badge">ADIM 01</span>
+                        <h3 class="playfair">Tanışma & Analiz</h3>
+                        <p>Çocuğunuzun potansiyelini bilimsel yöntemlerle keşfediyoruz.</p>
+                        <span class="p-link">Nasıl yapıyoruz? →</span>
+                    </div>
+                    <div class="process-card" onclick="openJourney(2)">
+                        <span class="p-icon">🧩</span>
+                        <span class="p-badge">ADIM 02</span>
+                        <h3 class="playfair">Gelişim Atölyesi</h3>
+                        <p>Oyun ve sanatla harmanlanmış gelişim programları uyguluyoruz.</p>
+                        <span class="p-link">İçeriği gör →</span>
+                    </div>
+                    <div class="process-card" onclick="openJourney(3)">
+                        <span class="p-icon">🚀</span>
+                        <span class="p-badge">ADIM 03</span>
+                        <h3 class="playfair">Sürekli Takip</h3>
+                        <p>Süreci raporlayarak aileyi her aşamada destekliyoruz.</p>
+                        <span class="p-link">Sonuçları incele →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sss-section" class="section-pad">
+            <div class="container reveal">
+                <h2 class="playfair text-teal text-center" style="font-size: 2.8rem;">Aklınıza Takılanlar</h2>
+                
+                <div class="faq-box">
+                    <div class="faq-item">
+                        <button class="faq-btn" onclick="toggleFaq(this)">Atölyeler kaç yaş için uygun? <span class="faq-icon">+</span></button>
+                        <div class="faq-content">Duyusal oyun atölyelerimiz 2-6 yaş, danışmanlık hizmetlerimiz ise tüm yaş grupları (çocuk, ergen, yetişkin) için özel olarak planlanmaktadır.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-btn" onclick="toggleFaq(this)">İlk görüşme ücretli mi? <span class="faq-icon">+</span></button>
+                        <div class="faq-content">Ön bilgi almak ve merkezimizi ziyaret edip tanışmak ücretsizdir. Kapsamlı değerlendirme seansları için lütfen iletişime geçiniz.</div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-btn" onclick="toggleFaq(this)">Seanslar ne kadar sürüyor? <span class="faq-icon">+</span></button>
+                        <div class="faq-content">Bireysel terapi ve danışmanlık seanslarımız ortalama 50 dakika, grup atölyelerimiz ise içeriğe bağlı olarak 60 ile 90 dakika arasında sürmektedir.</div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <div id="team-profile-page" class="modal">
-    <div class="modal-content">
-        <span style="position:absolute; right:30px; top:30px; cursor:pointer; font-size:2.5rem;" onclick="toggleTeamProfile(false)">×</span>
-        <h2 style="font-family:'Playfair Display'; margin-bottom:35px; color:var(--color-teal); text-align:center;">Uzman Kadromuz</h2>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:25px;">
-            <div onclick="openExpert('Uzman TALHA talha', 'Klinik Psikolog', 'Rabia Hanım uzmanlık alanında 10 yıllık deneyime sahiptir...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
-                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
-                <h4 style="color:var(--color-teal);">Uzman talha</h4>
-                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Klinik Psikolog</p>
-            </div>
-            <div onclick="openExpert('Uzman Talha Yılmaz', 'Aile Danışmanı', 'Ebru Hanım aile içi iletişim süreçlerinde uzmandır...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
-                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
-                <h4 style="color:var(--color-teal);">Uzman Talha Yılmaz</h4>
-                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Aile Danışmanı</p>
-            </div>
-             <div onclick="openExpert('Uzman Talha Karabulut', 'Aile Danışmanı', 'Ebru Hanım aile içi iletişim süreçlerinde uzmandır...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
-                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
-                <h4 style="color:var(--color-teal);">Uzman Talha Karabulut</h4>
-                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Aile Danışmanı</p>
-            </div>
-             <div onclick="openExpert('Uzman Talha Talha Talha', 'Aile Danışmanı', 'Ebru Hanım aile içi iletişim süreçlerinde uzmandır...')" style="background:var(--bg-light); padding:30px; border-radius:25px; text-align:center; cursor:pointer;">
-                <div style="width:100px; height:100px; background:#ddd; border-radius:50%; margin:0 auto 15px;"></div>
-                <h4 style="color:var(--color-teal);">Uzman Talha Talha Talha</h4>
-                <p style="font-size:0.85rem; color:var(--color-blue); font-weight:600;">Aile Danışmanı</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="expert-detail-page">
-    <span style="position:fixed; right:40px; top:30px; cursor:pointer; font-size:3rem; color:var(--color-teal); z-index:5000;" onclick="toggleExpertDetail(false)">×</span>
-    
-    <div class="profile-container">
-        <div class="back-btn-detail" onclick="toggleExpertDetail(false)">← GERİ DÖN</div>
-        <div class="profile-left">
-            <div class="profile-img-large"></div>
-            <h2 id="detail-name" style="margin-top:20px; color:var(--color-teal);">Uzman Adı</h2>
-            <p id="detail-title" style="color:var(--color-blue); font-weight:600;">Ünvan</p>
-        </div>
-        <div class="profile-right">
-            <h3 style="color:var(--color-orange); margin-bottom:15px;">Özgeçmiş & Uzmanlık</h3>
-            <p id="detail-bio" style="color:#555; line-height:1.8;">Bilgiler yükleniyor...</p>
-        </div>
-    </div>
-</div>
-    <div id="contact-page">
-        <div class="close-contact" onclick="toggleContact(false)">← ANA SAYFAYA DÖN</div>
-        <h2 style="font-family:'Playfair Display'; font-size:3rem; color:var(--color-teal); margin-bottom:10px;">Bize Ulaşın</h2>
-        <p style="color:#666; margin-bottom:20px;">Size en hızlı nasıl yardımcı olabiliriz?</p>
-        
-        <div class="contact-grid">
-            <a href="https://wa.me/905XXXXXXXXX" class="contact-card" style="color:#25D366;">
-                <p style="font-size:2rem;">💬</p>
-                <strong>WhatsApp</strong>
-            </a>
-            <a href="tel:+905XXXXXXXXX" class="contact-card" style="color:var(--color-blue);">
-                <p style="font-size:2rem;">📞</p>
-                <strong>Hemen Ara</strong>
-            </a>
-            <a href="sms:+905XXXXXXXXX" class="contact-card" style="color:var(--color-pink);">
-                <p style="font-size:2rem;">✉️</p>
-                <strong>SMS Gönder</strong>
-            </a>
-            <a href="https://www.google.com/maps/dir//Bulgurlu,+Sevgi+Sk.+No:3,+34696+%C3%9Csk%C3%BCdar%2F%C4%B0stanbul/" target="_blank" class="contact-card" style="color:var(--color-orange);">
-    <p style="font-size:2rem;">📍</p>
-    <strong>Konum</strong>
-</a>
-        </div>
-    </div>
-
-
-
     <footer>
-        <h2 style="font-family:'Playfair Display'; margin-bottom:15px;">Selâm Çocuk Atölyesi</h2>
-        <p>Geleceğe sevgiyle, oyunla ve güvenle bakıyoruz.</p>
-        <p style="margin-top:30px; font-size:0.8rem; opacity:0.6;">&copy; 2026 Tüm Hakları Saklıdır.</p>
+        <h2 class="playfair" style="font-size: 2rem; margin-bottom: 10px;">Selâm Çocuk Atölyesi</h2>
+        <p style="opacity: 0.8;">Geleceğe sevgiyle, bilimle ve güvenle bakıyoruz.</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">© 2026 Tüm Hakları Saklıdır.</p>
     </footer>
 
-    <script>
-    // 1. Ekip Listesini Aç/Kapat
-    function toggleTeamProfile(show) {
-        const modal = document.getElementById('team-profile-page');
-        modal.style.display = show ? 'flex' : 'none';
-        document.body.style.overflow = show ? 'hidden' : 'auto';
-    }
-
-    // İletişim Sayfasını Aç/Kapat ve Arka Planı Sabitle
-function toggleContact(show) {
-    const contact = document.getElementById('contact-page');
-    contact.style.display = show ? 'flex' : 'none';
-    
-    if (show) {
-        // İletişim açıldığında ana sayfayı dondur
-        document.body.style.overflow = 'hidden';
-    } else {
-        // İletişim kapandığında kaydırmayı geri aç
-        document.body.style.overflow = 'auto';
-    }
-}
-
-    // 3. Uzman Detayını Aç
-    function openExpert(name, title, bio) {
-        document.getElementById('detail-name').innerText = name;
-        document.getElementById('detail-title').innerText = title;
-        document.getElementById('detail-bio').innerText = bio;
-        
-        const detailPage = document.getElementById('expert-detail-page');
-        detailPage.style.display = 'flex'; // Ortalamak için flex şart
-    }
-
-    // 4. Uzman Detayını Kapat
-    function toggleExpertDetail(show) {
-        document.getElementById('expert-detail-page').style.display = show ? 'flex' : 'none';
-    }
-
-    // 5. SSS Akordiyon Sistemi
-    function toggleFaq(btn) {
-        const item = btn.parentElement;
-        const isActive = item.classList.contains('active');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-        if (!isActive) item.classList.add('active');
-    }
-
-    // 6. Dışarı Tıklayınca Kapatma Mantığı
-    window.onclick = function(e) {
-        if (e.target.id === 'team-profile-page') toggleTeamProfile(false);
-        if (e.target.id === 'contact-page') toggleContact(false);
-        if (e.target.id === 'expert-detail-page') toggleExpertDetail(false);
-    }
-    function updateBusinessStatus() {
-    const now = new Date();
-    const options = { timeZone: 'Europe/Istanbul', hour: 'numeric' };
-    const formatter = new Intl.DateTimeFormat('tr-TR', options);
-    const parts = formatter.formatToParts(now);
-    
-    let hour = parseInt(parts.find(p => p.type === 'hour').value);
-
-    const statusBadge = document.getElementById('status-badge');
-    const statusDot = document.getElementById('status-dot');
-    const statusText = document.getElementById('status-text');
-
-    // Her gün 09:00 - 18:00 arası açık
-    const isOpen = (hour >= 9 && hour < 18);
-
-    if (isOpen) {
-        statusBadge.className = 'status-open';
-        statusDot.style.backgroundColor = '#2e7d32';
-        statusDot.classList.add('pulse-animation');
-        statusText.innerText = 'Şu An Açık';
-    } else {
-        statusBadge.className = 'status-closed';
-        statusDot.style.backgroundColor = '#c62828';
-        statusDot.classList.remove('pulse-animation');
-        statusText.innerText = 'Şu An Kapalı';
-    }
-}
-
-// Saatler modalını açıp kapatan fonksiyon
-function toggleHoursModal(show) {
-    const modal = document.getElementById('hours-modal');
-    modal.style.display = show ? 'flex' : 'none';
-    document.body.style.overflow = show ? 'hidden' : 'auto';
-}
-// Sayfa açıldığında ve her dakika kontrol et
-updateBusinessStatus();
-setInterval(updateBusinessStatus, 60000);
-function openServiceDetail(title, icon, desc) {
-    document.getElementById('service-title').innerText = title;
-    document.getElementById('service-icon').innerText = icon;
-    document.getElementById('service-desc').innerText = desc;
-    
-    toggleServiceDetail(true);
-}
-
-function toggleServiceDetail(show) {
-    const page = document.getElementById('service-detail-page');
-    page.style.display = show ? 'flex' : 'none';
-    document.body.style.overflow = show ? 'hidden' : 'auto';
-}
-const journeyData = {
-    1: {
-        title: "Tanışma & Derinlemesine Analiz",
-        icon: "🔍",
-        desc: "Güven inşa etmek bizim için her şeyden önemli. İlk görüşmede çocuğunuzun sadece akademik değil, duygusal dünyasını da analiz ediyoruz. Uzmanlarımız eşliğinde yapılan objektif gözlemlerle, çocuğunuzun güçlü yanlarını ve desteklenmesi gereken noktaları belirliyoruz.",
-        benefit: "Bu aşama sonunda size özel bir 'Gelişim Yol Haritası' taslağı sunuyoruz."
-    },
-    2: {
-        title: "Kişiselleştirilmiş Gelişim Atölyesi",
-        icon: "🎨",
-        desc: "Çocuğunuz artık emin ellerde. Analiz sonuçlarına göre hazırlanan oyun terapileri, dikkat geliştirici egzersizler ve sosyal beceri gruplarıyla sürece başlıyoruz. Her seans, bir öncekinin üzerine koyarak ilerleyen bilimsel bir müfredata sahiptir.",
-        benefit: "Eğlenceli ve baskıdan uzak bir ortamda, kalıcı değişim sağlıyoruz."
-    },
-    3: {
-        title: "Sürekli Takip & Ebeveyn Rehberliği",
-        icon: "📈",
-        desc: "Gelişim sadece atölye sınırları içinde kalmaz. Düzenli raporlamalarla süreci takip ediyor ve ebeveyn görüşmeleriyle evdeki tutumları da destekliyoruz. Çocuğunuzdaki değişimi her ay somut verilerle gözlemliyoruz.",
-        benefit: "Ömür boyu sürecek özgüvenin temellerini el ele atıyoruz."
-    }
-};
-
-function openJourney(step) {
-    const data = journeyData[step];
-    const content = `
-        <div style="text-align:center;">
-            <span style="font-size:5rem;">${data.icon}</span>
-            <h1 style="font-family:'Playfair Display'; color:var(--color-teal); margin:20px 0;">${data.title}</h1>
-            <div style="width:60px; height:4px; background:var(--color-orange); margin:0 auto 30px;"></div>
-            <p style="font-size:1.2rem; line-height:2; color:#444; text-align:left;">${data.desc}</p>
-            <div style="background:#f0f7f9; padding:25px; border-radius:20px; border-left:5px solid var(--color-teal); margin-top:30px; text-align:left;">
-                <strong>Size Sunacağımız Katkı:</strong><br>
-                <span>${data.benefit}</span>
+    <div id="modal-contact" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'modal-contact')">
+        <div class="modal-content text-center">
+            <button class="btn-close" onclick="closeModal('modal-contact')">✕</button>
+            <h2 class="playfair text-teal" style="font-size: 2.5rem;">Bize Ulaşın</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;">Size en hızlı nasıl yardımcı olabiliriz?</p>
+            
+            <div class="contact-links">
+                <a href="https://wa.me/905000000000" target="_blank" class="contact-card">
+                    <span>💬</span><strong>WhatsApp</strong><small style="color:#888;">Hızlı Yanıt İçin</small>
+                </a>
+                <a href="tel:+905000000000" class="contact-card">
+                    <span>📞</span><strong>Hemen Ara</strong><small style="color:#888;">09:00 - 18:00 Arası</small>
+                </a>
+                <a href="mailto:info@selamterapi.com" class="contact-card">
+                    <span>✉️</span><strong>E-Posta</strong><small style="color:#888;">Detaylı Bilgi İçin</small>
+                </a>
+                <a href="https://maps.google.com" target="_blank" class="contact-card">
+                    <span>📍</span><strong>Konum</strong><small style="color:#888;">Yol Tarifi Al</small>
+                </a>
             </div>
-            <button onclick="toggleContact(true); closeJourney()" style="margin-top:40px; padding:18px 40px; background:var(--color-teal); color:white; border:none; border-radius:50px; font-weight:700; cursor:pointer;">Hemen Ücretsiz Ön Görüşme Randevusu Alın</button>
-        </div>
-    `;
-    
-    document.getElementById('journey-content').innerHTML = content;
-    document.getElementById('journey-overlay').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-
-    // Tarayıcı geçmişine "hayali" bir sayfa ekler, böylece geri tuşu sayfayı kapatır
-    history.pushState({view: 'journey'}, '');
-}
-
-function closeJourney() {
-    document.getElementById('journey-overlay').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Tarayıcının geri tuşuna basıldığında tetiklenir
-window.onpopstate = function(event) {
-    closeJourney();
-};
-</script>
-<div id="hours-modal" class="modal" onclick="toggleHoursModal(false)">
-    <div class="modal-content" style="max-width: 320px; padding: 30px; text-align: center;" onclick="event.stopPropagation()">
-        <h3 style="color: var(--color-teal); margin-bottom: 20px; font-family: 'Playfair Display';">Çalışma Saatlerimiz</h3>
-        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: #555; line-height: 2;">
-            <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed #eee;">
-                <span>Haftanın Her Günü</span> 
-                <strong>09:00 - 18:00</strong>
-            </li>
-        </ul>
-        <p style="font-size: 0.75rem; color: #888; margin-top: 15px;">Pazar günleri dahil hizmet vermekteyiz.</p>
-        <button onclick="toggleHoursModal(false)" style="margin-top: 20px; padding: 10px 25px; background: var(--color-teal); color: white; border: none; border-radius: 50px; cursor: pointer;">Kapat</button>
-    </div>
-</div>
-<div id="service-detail-page" class="modal" style="background: rgba(255,255,255,0.98);">
-    <div class="modal-content" style="max-width: 500px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.1); text-align: center; padding: 50px 30px;">
-        <span id="service-icon" style="font-size: 4rem; display: block; margin-bottom: 20px;"></span>
-        <h2 id="service-title" style="font-family: 'Playfair Display'; color: var(--color-teal); margin-bottom: 20px; font-size: 2rem;"></h2>
-        <div style="width: 50px; height: 3px; background: var(--color-orange); margin: 0 auto 25px;"></div>
-        <p id="service-desc" style="color: #555; line-height: 1.8; font-size: 1.1rem; margin-bottom: 35px;"></p>
-        
-        <div style="display: flex; flex-direction: column; gap: 15px;">
-            <button onclick="toggleContact(true); toggleServiceDetail(false)" style="padding: 15px; background: var(--color-teal); color: white; border: none; border-radius: 50px; font-weight: 700; cursor: pointer;">Uzmanımızla Görüşün</button>
-            <button onclick="toggleServiceDetail(false)" style="background: none; border: none; color: #888; cursor: pointer; font-weight: 600;">Kapat</button>
         </div>
     </div>
-</div>
+
+    <div id="modal-team" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'modal-team')">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('modal-team')">✕</button>
+            <h2 class="playfair text-teal text-center" style="font-size: 2.5rem;">Uzman Kadromuz</h2>
+            <p class="text-center" style="color: var(--text-muted); margin-bottom: 20px;">Alanında uzman, sevgi dolu ekibimizle tanışın.</p>
+            
+            <div class="team-grid">
+                <div class="team-member" onclick="openExpertDetail('Uzm. Psk. Talha', 'Klinik Psikolog', 'Çocuk ve ergen psikolojisi üzerine yüksek lisansını tamamlamış, bilişsel davranışçı terapi uzmanıdır.')">
+                    <img src="https://via.placeholder.com/150/CBD5E0/FFFFFF?text=T" alt="Uzman" class="avatar">
+                    <h4 class="text-teal">Uzm. Psk. Talha</h4>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: var(--color-orange);">Klinik Psikolog</p>
+                </div>
+                <div class="team-member" onclick="openExpertDetail('Talha Yılmaz', 'Aile Danışmanı', 'Aile içi iletişim, ebeveynlik becerileri ve kriz yönetimi konularında 10 yıllık deneyime sahiptir.')">
+                    <img src="https://via.placeholder.com/150/CBD5E0/FFFFFF?text=TY" alt="Uzman" class="avatar">
+                    <h4 class="text-teal">Talha Yılmaz</h4>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: var(--color-orange);">Aile Danışmanı</p>
+                </div>
+                <div class="team-member" onclick="openExpertDetail('Talha Karabulut', 'Özel Eğitim Uzmanı', 'Gelişimsel farklılığı olan çocukların akademik hayata adaptasyonu üzerine çalışmaktadır.')">
+                    <img src="https://via.placeholder.com/150/CBD5E0/FFFFFF?text=TK" alt="Uzman" class="avatar">
+                    <h4 class="text-teal">Talha Karabulut</h4>
+                    <p style="font-size: 0.85rem; font-weight: 700; color: var(--color-orange);">Özel Eğitim Uzmanı</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-expert" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'modal-expert')">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('modal-expert'); openModal('modal-team')">←</button>
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
+                <img src="https://via.placeholder.com/200" alt="Profil" style="width: 150px; height: 150px; border-radius: 20px; object-fit: cover;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h2 id="exp-name" class="playfair text-teal" style="font-size: 2.2rem; line-height: 1;">İsim</h2>
+                    <p id="exp-title" style="color: var(--color-orange); font-weight: 700; margin-bottom: 15px;">Ünvan</p>
+                    <p id="exp-bio" style="color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;">Özgeçmiş...</p>
+                    <button onclick="closeModal('modal-expert'); openModal('modal-contact')" class="btn-primary" style="width: auto; padding: 12px 30px;">Randevu Talep Et</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-service" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'modal-service')">
+        <div class="modal-content text-center" style="max-width: 600px;">
+            <button class="btn-close" onclick="closeModal('modal-service')">✕</button>
+            <div id="srv-icon" style="font-size: 4rem; margin-bottom: 10px;"></div>
+            <h2 id="srv-title" class="playfair text-teal" style="font-size: 2.2rem; margin-bottom: 15px;">Başlık</h2>
+            <div style="width: 50px; height: 3px; background: var(--color-orange); margin: 0 auto 20px;"></div>
+            <p id="srv-desc" style="color: var(--text-muted); line-height: 1.8; margin-bottom: 30px; font-size: 1.05rem;">Açıklama</p>
+            <button onclick="closeModal('modal-service'); openModal('modal-contact')" class="btn-primary" style="width: 100%;">Destek Alın</button>
+        </div>
+    </div>
+
+    <div id="modal-hours" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'modal-hours')">
+        <div class="modal-content text-center" style="max-width: 400px;">
+            <button class="btn-close" onclick="closeModal('modal-hours')">✕</button>
+            <h3 class="playfair text-teal" style="font-size: 2rem; margin-bottom: 20px;">Çalışma Saatleri</h3>
+            <ul style="list-style: none; padding: 0; line-height: 2.5; color: var(--text-dark);">
+                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee;">
+                    <span>Pazartesi - Cumartesi</span> <strong>09:00 - 18:00</strong>
+                </li>
+                <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee;">
+                    <span>Pazar</span> <strong style="color: var(--color-orange);">Kapalı</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal-journey" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'modal-journey')">
+        <div class="modal-content" style="max-width: 700px; text-align: center;">
+            <button class="btn-close" onclick="closeModal('modal-journey')">✕</button>
+            <div id="journey-dynamic-content">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        /* --- Scroll (Kaydırma) Animasyonları --- */
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll('.reveal');
+            var windowHeight = window.innerHeight;
+            for (var i = 0; i < reveals.length; i++) {
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 50) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Sayfa açılışında tetikle
+
+        /* --- Menü ve Modal Kontrolü --- */
+        const body = document.body;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navMenu');
+            const btn = document.getElementById('hamburgerBtn');
+            menu.classList.toggle('active');
+            if(menu.classList.contains('active')) {
+                btn.innerText = '✕';
+                body.style.overflow = 'hidden';
+            } else {
+                btn.innerText = '☰';
+                body.style.overflow = 'auto';
+            }
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('navMenu').classList.remove('active');
+            document.getElementById('hamburgerBtn').innerText = '☰';
+            body.style.overflow = 'auto';
+        }
+
+        function openModal(id) {
+            // Önce tüm aktif modalları kapat
+            document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+            const target = document.getElementById(id);
+            if(target) {
+                target.classList.add('active');
+                body.style.overflow = 'hidden'; // Arka plan kaymasını engelle
+            }
+        }
+
+        function closeModal(id) {
+            const target = document.getElementById(id);
+            if(target) {
+                target.classList.remove('active');
+                // Sadece başka aktif modal kalmadıysa body kaydırmayı aç
+                if(document.querySelectorAll('.modal-overlay.active').length === 0) {
+                    body.style.overflow = 'auto';
+                }
+            }
+        }
+
+        function closeModalOnOutsideClick(event, id) {
+            if(event.target.id === id) { closeModal(id); }
+        }
+
+        /* --- İşletme Durumu (Canlı Saat Kontrolü) --- */
+        function updateBusinessStatus() {
+            const now = new Date();
+            const turkeyTime = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Istanbul"}));
+            const hour = turkeyTime.getHours();
+            const day = turkeyTime.getDay(); // 0: Pazar
+            
+            const btn = document.getElementById('statusBtn');
+            const txt = document.getElementById('statusTxt');
+
+            // Pzt-Cmt (1-6) ve saat 09:00 - 18:00
+            if (day >= 1 && day <= 6 && hour >= 9 && hour < 18) {
+                btn.className = 'status-badge is-open';
+                txt.innerText = 'ŞU AN AÇIK';
+            } else {
+                btn.className = 'status-badge is-closed';
+                txt.innerText = 'ŞU AN KAPALI';
+            }
+        }
+        updateBusinessStatus();
+        setInterval(updateBusinessStatus, 60000);
+
+        /* --- SSS Akordiyon Sitemi --- */
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const isCurrentlyActive = item.classList.contains('active');
+            // Hepsini kapat
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            // Tıklananı aç (eğer zaten açık değilse)
+            if(!isCurrentlyActive) { item.classList.add('active'); }
+        }
+
+        /* --- Dinamik İçerik Doldurma Fonksiyonları --- */
+        function openService(title, icon, desc) {
+            document.getElementById('srv-title').innerText = title;
+            document.getElementById('srv-icon').innerText = icon;
+            document.getElementById('srv-desc').innerText = desc;
+            openModal('modal-service');
+        }
+
+        function openExpertDetail(name, title, bio) {
+            document.getElementById('exp-name').innerText = name;
+            document.getElementById('exp-title').innerText = title;
+            document.getElementById('exp-bio').innerText = bio;
+            closeModal('modal-team'); 
+            openModal('modal-expert');
+        }
+
+        /* --- 3 Adımlı Yolculuk Sistemi --- */
+        const journeySteps = {
+            1: { icon: "🔍", title: "Tanışma & Analiz", desc: "İlk görüşmede çocuğunuzun duygusal ve bilişsel dünyasını bilimsel metotlarla inceleriz. Size özel bir gelişim haritası çıkarırız.", benefit: "Sorunun kaynağını net olarak görme fırsatı." },
+            2: { icon: "🎨", title: "Gelişim Atölyesi", desc: "Elde edilen analizlere göre çocuğunuza en uygun oyun ve sanat terapisi gruplarını belirler, sürece başlarız.", benefit: "Çocuğun güvenli ortamda kendini ifade etmesi." },
+            3: { icon: "📈", title: "Takip & Rehberlik", desc: "Gelişim süreci boyunca düzenli ebeveyn görüşmeleri yapar, değişimi somut raporlarla size sunarız.", benefit: "Kalıcı ve sağlıklı aile içi iletişim." }
+        };
+
+        function openJourney(stepNum) {
+            const step = journeySteps[stepNum];
+            
+            // Alt Navigasyon Butonlarını Oluştur
+            let navHtml = `<div style="display:flex; justify-content:center; gap:15px; margin-top:30px;">`;
+            if(stepNum > 1) {
+                navHtml += `<button onclick="openJourney(${stepNum - 1})" class="btn-secondary" style="width:auto; padding:12px 25px;">← Geri</button>`;
+            }
+            if(stepNum < 3) {
+                navHtml += `<button onclick="openJourney(${stepNum + 1})" class="btn-primary" style="width:auto; padding:12px 30px;">Sonraki Adım →</button>`;
+            } else {
+                navHtml += `<button onclick="closeModal('modal-journey'); openModal('modal-contact')" class="btn-primary" style="width:auto; padding:12px 30px; background:var(--color-orange);">Hemen Başlayın ✨</button>`;
+            }
+            navHtml += `</div>`;
+
+            // Nokta Göstergeleri
+            const dots = `
+                <div style="display:flex; justify-content:center; gap:8px; margin-bottom:30px;">
+                    <div style="width:30px; height:6px; border-radius:5px; background:${stepNum >= 1 ? 'var(--color-orange)' : '#eee'}"></div>
+                    <div style="width:30px; height:6px; border-radius:5px; background:${stepNum >= 2 ? 'var(--color-orange)' : '#eee'}"></div>
+                    <div style="width:30px; height:6px; border-radius:5px; background:${stepNum >= 3 ? 'var(--color-orange)' : '#eee'}"></div>
+                </div>`;
+
+            const html = `
+                ${dots}
+                <div style="font-size:4rem; margin-bottom:15px;">${step.icon}</div>
+                <h2 class="playfair text-teal" style="font-size:2.2rem; margin-bottom:15px;">${step.title}</h2>
+                <p style="color:var(--text-muted); font-size:1.1rem; max-width:500px; margin:0 auto 20px;">${step.desc}</p>
+                <div style="background:var(--bg-light); padding:20px; border-radius:15px; display:inline-block;">
+                    <strong class="text-orange">Kazanım:</strong> <span style="color:var(--text-dark);">${step.benefit}</span>
+                </div>
+                ${navHtml}
+            `;
+            
+            document.getElementById('journey-dynamic-content').innerHTML = html;
+            openModal('modal-journey');
+        }
+    </script>
 </body>
 </html>
