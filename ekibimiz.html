@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekibimiz | Selâm Çocuk Atölyesi</title>
+    <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green:       #2D4A3E;
+            --green-light: #3D6355;
+            --terra:       #C17E4C;
+            --terra-light: #D9A47A;
+            --cream:       #FAF7F2;
+            --cream-dark:  #F0EBE1;
+            --sage:        #8BAF9E;
+            --text:        #1C1C1A;
+            --muted:       #6B6B60;
+            --white:       #FFFFFF;
+            --t:           all 0.45s cubic-bezier(0.16,1,0.3,1);
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 0 5%; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.up { opacity: 1; transform: none; }
+
+        /* header */
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 999; transition: var(--t); }
+        .nav-wrap { max-width: 1180px; margin: 0 auto; padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+        header.scrolled { background: rgba(250,247,242,0.92); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+        .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .brand-logo { height: 44px; width: 44px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 12px rgba(45,74,62,0.18); }
+        .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: var(--green); line-height: 1.1; }
+        .brand-sub { font-size: 0.6rem; font-weight: 500; color: var(--sage); letter-spacing: 2.5px; text-transform: uppercase; display: block; }
+        nav { display: flex; align-items: center; gap: 36px; }
+        nav a { text-decoration: none; color: var(--text); font-size: 0.92rem; font-weight: 500; position: relative; padding-bottom: 3px; transition: color 0.3s; }
+        nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--terra); transition: width 0.35s; }
+        nav a:hover { color: var(--terra); }
+        nav a:hover::after { width: 100%; }
+        nav a.active { color: var(--terra); }
+        nav a.active::after { width: 100%; }
+        .nav-cta { background: var(--green) !important; color: var(--white) !important; padding: 10px 24px !important; border-radius: 999px; }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--green-light) !important; }
+        .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 4px; }
+        .burger span { display: block; width: 24px; height: 1.5px; background: var(--green); }
+        .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(28,28,26,0.3); z-index: 997; backdrop-filter: blur(4px); }
+        .nav-drawer { position: fixed; top: 0; right: -100%; width: min(340px,85vw); height: 100vh; background: var(--white); z-index: 998; padding: 80px 40px 40px; display: flex; flex-direction: column; gap: 8px; transition: right 0.45s cubic-bezier(0.16,1,0.3,1); box-shadow: -20px 0 60px rgba(0,0,0,0.12); }
+        .nav-drawer.open { right: 0; }
+        .nav-overlay.open { display: block; }
+        .drawer-link { display: block; text-decoration: none; font-size: 1.3rem; font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--green); padding: 14px 0; border-bottom: 1px solid rgba(45,74,62,0.08); }
+        .drawer-cta { margin-top: 24px; background: var(--green); color: var(--white); padding: 14px 28px; border-radius: 999px; text-align: center; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none; font-family: 'DM Sans',sans-serif; }
+
+        /* page hero */
+        .page-hero { padding: 140px 0 90px; background: var(--cream-dark); position: relative; overflow: hidden; }
+        .page-hero::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: rgba(193,126,76,0.07); top: -150px; right: -100px; }
+        .page-hero-inner { position: relative; z-index: 1; }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; }
+        .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.3s; }
+        .breadcrumb a:hover { color: var(--terra); }
+        .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 600; color: var(--green); line-height: 1.1; margin-bottom: 20px; }
+        .page-hero h1 em { font-style: italic; color: var(--terra); }
+        .page-hero p { font-size: 1.1rem; color: var(--muted); max-width: 560px; }
+
+        .section-label { font-size: 0.72rem; font-weight: 600; color: var(--terra); letter-spacing: 2.5px; text-transform: uppercase; display: block; margin-bottom: 14px; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 600; color: var(--green); line-height: 1.15; }
+        .section-title em { font-style: italic; color: var(--terra); }
+
+        /* team cards */
+        .team-section { padding: 100px 0; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; margin-top: 64px; }
+        .team-card {
+            background: var(--white); border-radius: 28px; overflow: hidden;
+            border: 1px solid rgba(45,74,62,0.06); transition: var(--t);
+        }
+        .team-card:hover { transform: translateY(-10px); box-shadow: 0 24px 60px rgba(45,74,62,0.1); }
+        .team-card-top {
+            padding: 48px 40px 36px; background: var(--cream-dark); position: relative; overflow: hidden; text-align: center;
+        }
+        .team-card-top::before { content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%; background: rgba(193,126,76,0.07); top: -120px; right: -80px; }
+        .member-avatar {
+            width: 120px; height: 120px; border-radius: 50%;
+            background: var(--green); margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 600;
+            color: var(--white); border: 4px solid var(--white);
+            box-shadow: 0 8px 24px rgba(45,74,62,0.18); position: relative; z-index: 1;
+        }
+        .member-name { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--green); margin-bottom: 6px; position: relative; z-index: 1; }
+        .member-role { font-size: 0.78rem; font-weight: 600; color: var(--terra); letter-spacing: 1.5px; text-transform: uppercase; position: relative; z-index: 1; }
+        .team-card-body { padding: 36px 40px; }
+        .member-bio { font-size: 0.93rem; color: var(--muted); line-height: 1.8; margin-bottom: 28px; }
+        .member-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+        .member-tag { background: rgba(45,74,62,0.06); color: var(--green); padding: 5px 14px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+        .member-cta { width: 100%; background: transparent; border: 1.5px solid rgba(45,74,62,0.15); color: var(--green); padding: 14px; border-radius: 14px; font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: var(--t); }
+        .member-cta:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+
+        /* values */
+        .values-section { background: var(--green); padding: 100px 0; }
+        .values-header { text-align: center; margin-bottom: 70px; }
+        .values-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,3.5vw,2.8rem); font-weight: 600; color: var(--white); }
+        .values-header h2 em { font-style: italic; color: var(--terra-light); }
+        .values-header p { color: rgba(255,255,255,0.5); margin-top: 14px; font-size: 1rem; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 2px; }
+        .value-block { background: rgba(255,255,255,0.04); padding: 48px 36px; transition: var(--t); }
+        .value-block:hover { background: rgba(255,255,255,0.08); }
+        .value-icon { font-size: 2.2rem; display: block; margin-bottom: 20px; }
+        .value-block h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--white); margin-bottom: 10px; }
+        .value-block p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.75; }
+
+        /* join */
+        .join-section { padding: 100px 0; background: var(--cream-dark); }
+        .join-card { background: var(--white); border-radius: 32px; padding: 80px; display: flex; gap: 80px; align-items: center; flex-wrap: wrap; }
+        .join-text { flex: 1; min-width: 260px; }
+        .join-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 600; color: var(--green); margin-bottom: 18px; line-height: 1.2; }
+        .join-text h2 em { font-style: italic; color: var(--terra); }
+        .join-text p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+        .btn-green { background: var(--green); color: var(--white); padding: 16px 40px; border-radius: 999px; font-size: 0.95rem; font-weight: 600; font-family: 'DM Sans', sans-serif; border: none; cursor: pointer; transition: var(--t); text-decoration: none; display: inline-block; }
+        .btn-green:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(45,74,62,0.2); }
+        .join-perks { flex: 0 0 280px; }
+        .perk { display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-bottom: 1px solid rgba(45,74,62,0.07); }
+        .perk:last-child { border-bottom: none; }
+        .perk-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+        .perk p { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+        .perk strong { display: block; font-size: 0.92rem; color: var(--green); margin-bottom: 3px; }
+
+        /* footer */
+        footer { background: #1A2E26; padding: 70px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-bottom: 20px; }
+        .footer-logo img { height: 40px; border-radius: 10px; }
+        .footer-logo span { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); font-weight: 600; }
+        .footer-desc { font-size: 0.88rem; color: rgba(255,255,255,0.4); line-height: 1.8; max-width: 260px; }
+        .footer-col h5 { font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li + li { margin-top: 12px; }
+        .footer-col ul li a { text-decoration: none; font-size: 0.9rem; color: rgba(255,255,255,0.55); transition: color 0.3s; }
+        .footer-col ul li a:hover { color: var(--terra-light); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 30px; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+        /* modal */
+        .overlay { position: fixed; inset: 0; z-index: 9999; background: rgba(28,28,26,0.5); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity 0.35s, visibility 0.35s; }
+        .overlay.show { opacity: 1; visibility: visible; }
+        .modal { background: var(--white); border-radius: 28px; padding: 52px; max-width: 600px; width: 100%; position: relative; transform: translateY(24px) scale(0.97); transition: var(--t); max-height: 90vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,0.18); }
+        .overlay.show .modal { transform: none; }
+        .close-btn { position: absolute; top: 22px; right: 22px; width: 40px; height: 40px; border-radius: 50%; background: var(--cream); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--muted); transition: var(--t); }
+        .close-btn:hover { background: var(--cream-dark); transform: rotate(90deg); }
+        .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 600; color: var(--green); margin-bottom: 8px; }
+        .modal-sub { font-size: 0.95rem; color: var(--muted); margin-bottom: 32px; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .contact-tile { padding: 28px 24px; border-radius: 18px; border: 1.5px solid rgba(45,74,62,0.1); text-align: center; text-decoration: none; color: var(--text); transition: var(--t); display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .contact-tile:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(45,74,62,0.08); }
+        .contact-tile .icon { font-size: 2rem; }
+        .contact-tile strong { font-size: 0.95rem; color: var(--green); }
+        .contact-tile small { font-size: 0.78rem; color: var(--muted); }
+
+        @media (max-width: 900px) {
+            nav { display: none; }
+            .burger { display: flex; }
+            .team-grid { grid-template-columns: 1fr; }
+            .join-card { padding: 50px 36px; gap: 48px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-brand { grid-column: 1/-1; }
+        }
+        @media (max-width: 640px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .join-card { padding: 40px 24px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="site-header">
+    <div class="nav-wrap">
+        <a href="index.html" class="brand">
+            <img src="images/logo.jpeg" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+            <div>
+                <div class="brand-name">Selâm</div>
+                <span class="brand-sub">Çocuk Atölyesi</span>
+            </div>
+        </a>
+        <nav>
+            <a href="hizmetler.html">Hizmetler</a>
+            <a href="ekibimiz.html" class="active">Ekibimiz</a>
+            <a href="index.html#sss">Soru & Cevap</a>
+            <a href="#" onclick="openOverlay('ov-contact'); return false;" class="nav-cta">İletişim</a>
+        </nav>
+        <button class="burger" onclick="toggleDrawer()"><span></span><span></span><span></span></button>
+    </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay" onclick="toggleDrawer()"></div>
+<div class="nav-drawer" id="navDrawer">
+    <a class="drawer-link" href="hizmetler.html" onclick="toggleDrawer()">Hizmetler</a>
+    <a class="drawer-link" href="ekibimiz.html" onclick="toggleDrawer()">Ekibimiz</a>
+    <a class="drawer-link" href="index.html#sss" onclick="toggleDrawer()">Soru & Cevap</a>
+    <button class="drawer-cta" onclick="toggleDrawer(); openOverlay('ov-contact')">İletişim</button>
+</div>
+
+<section class="page-hero">
+    <div class="container page-hero-inner reveal">
+        <div class="breadcrumb">
+            <a href="index.html">Ana Sayfa</a><span>/</span><span>Ekibimiz</span>
+        </div>
+        <h1>Uzman<br><em>ekibimiz</em></h1>
+        <p>Alanında uzmanlaşmış, sevgi dolu ve özverili ekibimizle çocuğunuzun yanındayız.</p>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="container">
+        <div class="reveal" style="text-align:center; margin-bottom:0">
+            <span class="section-label">Kadromuz</span>
+            <h2 class="section-title">Her biri kendi<br><em>alanının uzmanı</em></h2>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card reveal">
+                <div class="team-card-top">
+                    <div class="member-avatar">T</div>
+                    <div class="member-name">Uzm. Psk. Talha</div>
+                    <div class="member-role">Klinik Psikolog</div>
+                </div>
+                <div class="team-card-body">
+                    <p class="member-bio">Çocuk ve ergen psikolojisi üzerine yüksek lisansını tamamlamış, bilişsel davranışçı terapi konusunda sertifikalı bir klinisyen. 6 yılı aşkın deneyimiyle dikkat güçlükleri, kaygı bozuklukları ve duygusal düzenleme alanlarında çalışmaktadır.</p>
+                    <div class="member-tags">
+                        <span class="member-tag">BDT</span>
+                        <span class="member-tag">Oyun Terapisi</span>
+                        <span class="member-tag">DEHB</span>
+                        <span class="member-tag">Kaygı</span>
+                    </div>
+                    <button class="member-cta" onclick="openOverlay('ov-contact')">Randevu Al →</button>
+                </div>
+            </div>
+
+            <div class="team-card reveal">
+                <div class="team-card-top">
+                    <div class="member-avatar" style="background: var(--terra);">TY</div>
+                    <div class="member-name">Talha Yılmaz</div>
+                    <div class="member-role">Aile Danışmanı</div>
+                </div>
+                <div class="team-card-body">
+                    <p class="member-bio">Aile içi iletişim, ebeveynlik becerileri ve kriz yönetimi konularında 10 yıllık deneyime sahip. Aile sistemleri teorisi ve çözüm odaklı yaklaşım konusunda ileri düzey eğitim almış bir danışman.</p>
+                    <div class="member-tags">
+                        <span class="member-tag">Aile Terapisi</span>
+                        <span class="member-tag">Ebeveynlik</span>
+                        <span class="member-tag">Çift Terapisi</span>
+                        <span class="member-tag">Kriz</span>
+                    </div>
+                    <button class="member-cta" onclick="openOverlay('ov-contact')">Randevu Al →</button>
+                </div>
+            </div>
+
+            <div class="team-card reveal">
+                <div class="team-card-top">
+                    <div class="member-avatar" style="background: var(--sage); color: var(--green);">TK</div>
+                    <div class="member-name">Talha Karabulut</div>
+                    <div class="member-role">Özel Eğitim Uzmanı</div>
+                </div>
+                <div class="team-card-body">
+                    <p class="member-bio">Gelişimsel farklılığı olan çocukların akademik ve sosyal hayata adaptasyonu üzerine çalışmaktadır. Otizm spektrum bozukluğu, öğrenme güçlükleri ve dil gelişimi konularında uzmanlaşmıştır.</p>
+                    <div class="member-tags">
+                        <span class="member-tag">Otizm</span>
+                        <span class="member-tag">Öğrenme Güçlükleri</span>
+                        <span class="member-tag">Dil Gelişimi</span>
+                        <span class="member-tag">ABA</span>
+                    </div>
+                    <button class="member-cta" onclick="openOverlay('ov-contact')">Randevu Al →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="values-section reveal">
+    <div class="container">
+        <div class="values-header">
+            <h2>Bizi bir arada<br><em>tutan değerler</em></h2>
+            <p>Her üyemiz bu ilkeleri içselleştirmiş, bunlarla çalışır.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-block">
+                <span class="value-icon">🧬</span>
+                <h4>Kanıta Dayalı</h4>
+                <p>Tüm müdahalelerimiz bilimsel araştırmalar ve kanıtlanmış yöntemlere dayanır.</p>
+            </div>
+            <div class="value-block">
+                <span class="value-icon">💛</span>
+                <h4>Şefkatle</h4>
+                <p>Her çocuğa ve aileye yargısız, sıcak ve kapsayıcı bir yaklaşım sunarız.</p>
+            </div>
+            <div class="value-block">
+                <span class="value-icon">🔒</span>
+                <h4>Gizlilikle</h4>
+                <p>Paylaşılan her bilgi etik ilkeler çerçevesinde kesinlikle gizli tutulur.</p>
+            </div>
+            <div class="value-block">
+                <span class="value-icon">🤝</span>
+                <h4>Ortaklıkla</h4>
+                <p>Aileyi sürecin aktif bir parçası olarak görür, birlikte çalışırız.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="join-section">
+    <div class="container">
+        <div class="join-card reveal">
+            <div class="join-text">
+                <span class="section-label">Kariyer</span>
+                <h2>Ekibimize<br><em>katılın</em></h2>
+                <p>Çocukların ve ailelerin hayatına anlam katmak isteyen, alanında uzman ve tutkulu terapistler arıyoruz. Güçlü bir ekip ve destekleyici bir çalışma ortamı sunuyoruz.</p>
+                <a href="mailto:kariyer@selam.com.tr" class="btn-green">Başvuru Gönder →</a>
+            </div>
+            <div class="join-perks">
+                <div class="perk">
+                    <div class="perk-icon">📅</div>
+                    <div>
+                        <strong>Esnek Çalışma</strong>
+                        <p>İhtiyacınıza göre tam veya yarı zamanlı seçenekler</p>
+                    </div>
+                </div>
+                <div class="perk">
+                    <div class="perk-icon">📚</div>
+                    <div>
+                        <strong>Sürekli Eğitim</strong>
+                        <p>Yıllık eğitim bütçesi ve seminer katılımı desteği</p>
+                    </div>
+                </div>
+                <div class="perk">
+                    <div class="perk-icon">🌿</div>
+                    <div>
+                        <strong>Dengeli İş Hayatı</strong>
+                        <p>Tükenmişliği önlemek için sınırlandırılmış vaka yükü</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo.jpeg" alt="Logo" onerror="this.style.display='none'">
+                    <span>Selâm Çocuk Atölyesi</span>
+                </a>
+                <p class="footer-desc">Geleceğe sevgiyle, bilimle ve güvenle bakıyoruz.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Keşfet</h5>
+                <ul>
+                    <li><a href="hizmetler.html">Hizmetlerimiz</a></li>
+                    <li><a href="ekibimiz.html">Uzman Ekibimiz</a></li>
+                    <li><a href="index.html#sss">Sık Sorulanlar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>İletişim</h5>
+                <ul>
+                    <li><a href="tel:+905000000000">+90 500 000 00 00</a></li>
+                    <li><a href="mailto:info@selam.com.tr">info@selam.com.tr</a></li>
+                    <li><a href="#">Pzt–Cmt: 09:00–18:00</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Selâm Çocuk Atölyesi. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</footer>
+
+<div id="ov-contact" class="overlay" onclick="if(event.target===this) closeOverlay('ov-contact')">
+    <div class="modal">
+        <button class="close-btn" onclick="closeOverlay('ov-contact')">✕</button>
+        <div class="modal-title">Bize Ulaşın</div>
+        <div class="modal-sub">Size en hızlı nasıl yardımcı olabiliriz?</div>
+        <div class="contact-grid">
+            <a href="https://wa.me/905000000000" target="_blank" class="contact-tile"><div class="icon">💬</div><strong>WhatsApp</strong><small>Hızlı yanıt için</small></a>
+            <a href="tel:+905000000000" class="contact-tile"><div class="icon">📞</div><strong>Hemen Ara</strong><small>09:00 – 18:00</small></a>
+            <a href="mailto:info@selam.com.tr" class="contact-tile"><div class="icon">✉️</div><strong>E-Posta</strong><small>Detaylı bilgi için</small></a>
+            <a href="https://maps.google.com" target="_blank" class="contact-tile"><div class="icon">📍</div><strong>Konum</strong><small>Yol tarifi al</small></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 30));
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(() => e.target.classList.add('up'), (i%4)*90); io.unobserve(e.target); } });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    function toggleDrawer() {
+        document.getElementById('navDrawer').classList.toggle('open');
+        document.getElementById('navOverlay').classList.toggle('open');
+        document.body.style.overflow = document.getElementById('navDrawer').classList.contains('open') ? 'hidden' : '';
+    }
+    function openOverlay(id) { document.getElementById(id).classList.add('show'); document.body.style.overflow = 'hidden'; }
+    function closeOverlay(id) { document.getElementById(id).classList.remove('show'); document.body.style.overflow = ''; }
+</script>
+</body>
+</html>
